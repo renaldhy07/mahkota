@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MAHKOTA — Custom Apparel & Merchandise</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
-  <!-- 🌈 Efek Lampu Neon -->
-  <div id="neonLayer"></div>
-
   <!-- 🌈 Panel Warna -->
   <div id="uiPanel">
     <div class="control-group">
@@ -35,6 +33,9 @@
   <!-- 🌙 Tombol Tema -->
   <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌓</button>
 
+  <!-- ☰ Tombol Hamburger -->
+  <button id="hamburger" class="hamburger" aria-label="Toggle navigation">☰</button>
+
   <!-- 🔝 Topbar -->
   <div class="topbar">
     <div class="contact-combo">
@@ -46,41 +47,33 @@
 
   <!-- 🧢 Header -->
   <header class="site-header">
-    <div class="nav-inner" style="width:90%; margin:auto; display:flex; align-items:center; justify-content:space-between;">
-
-      <!-- ☰ Hamburger di kiri -->
-      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button" style="margin-right:10px;">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <!-- Logo / Brand -->
-      <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-        <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota" style="height:48px;">
-        <span class="brand-text" style="color:#00ffff; font-weight:700;">MAHKOTA 
-          <small style="display:block; font-weight:600; color:#fff; font-size:0.8rem;">SABLON DAN KAOS POLOS</small>
-        </span>
+    <div class="header-container">
+      <a class="brand" href="#">
+        <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota">
+        <span class="brand-text">MAHKOTA</span>
       </a>
 
-      <!-- NAV LINKS -->
-      <div class="nav-links" id="nav-links" aria-hidden="true">
-        <ul>
-          <li><a href="#" class="active">HOME</a></li>
-          <li><a href="tentang.html">TENTANG</a></li>
-          <li class="nav-dropdown">
-            <a href="#" class="dropbtn">PRICELIST ▾</a>
-            <div class="dropdown-content">
-              <a href="#" id="openPdf">Pricelist Sablon</a>
-              <a href="#">Pricelist Konveksi</a>
-              <a href="#">Pricelist Merchandise</a>
-            </div>
-          </li>
-          <li><a href="portfolio.html">PORTFOLIO</a></li>
-          <li><a href="cara-order.html">CARA ORDER</a></li>
-          <li><a href="#" id="openCatalog">KATALOG</a></li>
-        </ul>
-      </div>
+      <nav class="main-nav" id="nav-links">
+        <div class="mobile-menu-header">
+          <a class="brand" href="#">
+            <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota">
+            <span class="brand-text">MAHKOTA</span>
+          </a>
+          <button id="closeMenu" class="close-btn">✕</button>
+        </div>
+        <a href="#" class="active mobile-link">HOME</a>
+        <a href="tentang.html" class="mobile-link">TENTANG</a>
+        <div class="nav-dropdown">
+          <a href="#" class="dropbtn">PRICELIST ▾</a>
+          <div class="dropdown-content">
+            <a href="assets/pdf.pdf" target="_blank">Pricelist Sablon</a>
+            <a href="assets/pricelist-konveksi.pdf" target="_blank">Pricelist Konveksi</a>
+          </div>
+        </div>
+        <a href="portfolio.html" class="mobile-link">PORTFOLIO</a>
+        <a href="cara-order.html" class="mobile-link">CARA ORDER</a>
+        <a href="#" id="openCatalog" class="mobile-link">KATALOG</a>
+      </nav>
     </div>
   </header>
 
@@ -92,73 +85,74 @@
           <div class="slide active"><img src="assets/hero1.jpg" alt="Produk 1"></div>
           <div class="slide"><img src="assets/hero2.jpg" alt="Produk 2"></div>
         </div>
-        <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
-        <button class="scroll-btn scroll-right" aria-label="Scroll right">›</button>
+        <button class="scroll-btn scroll-left">‹</button>
+        <button class="scroll-btn scroll-right">›</button>
       </div>
     </section>
 
     <!-- 🌟 Alasan Memilih Mahkota -->
-    <section class="alasan-kami">
-      <div class="container">
-        <h2>Kenapa Memilih Mahkota?</h2>
-        <p class="alasan-desc">
-          Mahkota adalah partner terbaik untuk kebutuhan apparel dan merchandise custom Anda. 
-          Kami mengutamakan hasil berkualitas tinggi, pelayanan cepat, harga bersaing, 
-          dan jaminan kepuasan pelanggan.
-        </p>
+<section class="alasan-kami">
+  <div class="container">
+    <h2 class="section-title">KENAPA MEMILIH MAHKOTA?</h2>
+    <p class="alasan-desc section-subtitle">
+      Mahkota adalah partner terbaik untuk kebutuhan apparel dan merchandise custom Anda. 
+      Kami mengutamakan hasil berkualitas tinggi, pelayanan cepat, harga bersaing, 
+      dan jaminan kepuasan pelanggan.
+    </p>
 
-        <div class="alasan-grid">
-          <div class="alasan-item">
-            <div class="icon">⚡</div>
-            <h3>Produksi Cepat</h3>
-            <p>Proses produksi kami efisien dan bisa menyesuaikan jadwal kebutuhan Anda tanpa mengorbankan kualitas.</p>
-          </div>
-
-          <div class="alasan-item">
-            <div class="icon">💎</div>
-            <h3>Kualitas Terbaik</h3>
-            <p>Setiap produk melewati quality control ketat agar hasil sablon dan jahitan selalu maksimal.</p>
-          </div>
-
-          <div class="alasan-item">
-            <div class="icon">💰</div>
-            <h3>Harga Bersaing</h3>
-            <p>Kami memberikan harga yang transparan dan seimbang antara kualitas dan kecepatan pengerjaan.</p>
-          </div>
-
-          <div class="alasan-item">
-            <div class="icon">🎨</div>
-            <h3>Gratis Desain</h3>
-            <p>Belum punya desain? Tim kami siap bantu wujudkan ide Anda tanpa biaya tambahan.</p>
-          </div>
-
-          <div class="alasan-item">
-            <div class="icon">🤝</div>
-            <h3>Berpengalaman</h3>
-            <p>Kami telah dipercaya ratusan klien dari komunitas, instansi, hingga perusahaan besar di berbagai daerah.</p>
-          </div>
-
-          <div class="alasan-item">
-            <div class="icon">🛡️</div>
-            <h3>Garansi Produk</h3>
-            <p>Kepuasan Anda prioritas utama — kami berikan garansi untuk setiap produk yang tidak sesuai pesanan.</p>
-          </div>
-        </div>
-
-        <a href="https://wa.me/6285257778761" target="_blank" class="btn primary alasan-btn">💬 Hubungi Kami</a>
+    <div class="alasan-grid">
+      <div class="alasan-item">
+        <div class="icon">⚡</div>
+        <h3>Produksi Cepat</h3>
+        <p>Proses produksi kami efisien dan bisa menyesuaikan jadwal kebutuhan Anda tanpa mengorbankan kualitas.</p>
       </div>
-    </section>
+
+      <div class="alasan-item">
+        <div class="icon">💎</div>
+        <h3>Kualitas Terbaik</h3>
+        <p>Setiap produk melewati quality control ketat agar hasil sablon dan jahitan selalu maksimal.</p>
+      </div>
+
+      <div class="alasan-item">
+        <div class="icon">💰</div>
+        <h3>Harga Bersaing</h3>
+        <p>Kami memberikan harga yang transparan dan seimbang antara kualitas dan kecepatan pengerjaan.</p>
+      </div>
+
+      <div class="alasan-item">
+        <div class="icon">🎨</div>
+        <h3>Gratis Desain</h3>
+        <p>Belum punya desain? Tim kami siap bantu wujudkan ide Anda tanpa biaya tambahan.</p>
+      </div>
+
+      <div class="alasan-item">
+        <div class="icon">🤝</div>
+        <h3>Berpengalaman</h3>
+        <p>Kami telah dipercaya ratusan klien dari komunitas, instansi, hingga perusahaan besar di berbagai daerah.</p>
+      </div>
+
+      <div class="alasan-item">
+        <div class="icon">🛡️</div>
+        <h3>Garansi Produk</h3>
+        <p>Kepuasan Anda prioritas utama — kami berikan garansi untuk setiap produk yang tidak sesuai pesanan.</p>
+      </div>
+    </div>
+
+	  <a href="https://wa.me/6285257778761" target="_blank" class="btn primary alasan-btn center-btn"><i class="fab fa-whatsapp"></i> Hubungi Kami</a>
+  </div>
+</section>
+
 
   <!-- ⚙️ Footer -->
   <footer class="footer-light">
     <div class="footer-grid">
       <div class="footer-col">
         <img src="assets/logo-mahkota.png" class="footer-logo" alt="">
-        <p>Perusahaan sablon & konveksi yang berkomitmen menghadirkan produk apparel custom berkualitas tinggi untuk komunitas, bisnis, dan event.</p>
+        <p class="footer-tagline">Solusi Apparel Custom Berkualitas. Cepat, Berpengalaman, dan Bergaransi.</p>
       </div>
       <div class="footer-col">
         <h4>Layanan Kami</h4>
-        <ul><li>Sablon Manual</li><li>Sablon DTF</li><li>Konveksi</li><li>Merchandise</li></ul>
+        <ul><li>Sablon Manual</li><li>Sablon DTF</li><li>Konveksi</li></ul>
       </div>
       <div class="footer-col">
         <h4>Kontak</h4>
@@ -172,13 +166,6 @@
     <div class="footer-bottom">© 2020 – <span id="year"></span> Mahkota Custom Apparel & Merchandise</div>
   </footer>
 
-  <!-- 🧾 Modal Pricelist -->
-  <div id="pricelistModal" class="modal">
-    <div class="modal-inner pdf-view">
-      <button id="closePdf" class="modal-close">✕</button>
-      <iframe src="assets/pdf.pdf" title="Pricelist Mahkota"></iframe>
-    </div>
-  </div>
 
   <!-- 📖 Modal Katalog -->
   <div id="catalogModal" class="modal">

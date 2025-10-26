@@ -7,21 +7,35 @@
 
 html, body {
   height: 100%;
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at center, rgba(0,255,255,0.15), rgba(0,0,0,0.9));
-  color: #fff;
-  transition: background 0.5s ease;
+  font-family: 'Urbanist', sans-serif;
+  /* Default: Dark Mode dengan Neon Cyan */
+  --bg-color: #000;
+  --text-color: #fff;
+  --neon-color: #00FFFF; /* Default Neon Color */
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
+  /* Efek neonPulse untuk background di Dark Mode */
+  animation: neonPulse 8s infinite alternate;
+  /* Pastikan glow terlihat di seluruh viewport */
+  box-shadow: inset 0 0 100px var(--neon-bg-color)33;
+}
+
+/* === Light Mode === */
+body.light-mode {
+  --bg-color: #f0f0f0;
+  --text-color: #000;
+  --neon-color: #FF66CC; /* Default Neon Color di Light Mode */
+  background: var(--bg-color);
+  color: var(--text-color);
+  /* Hapus animasi di Light Mode */
+  animation: none;
+  box-shadow: none;
 }
 
 /* === Neon Background Glow === */
-body.neon-bg {
-  animation: neonPulse 5s infinite alternate ease-in-out;
-}
-@keyframes neonPulse {
-  0% { background: radial-gradient(circle, rgba(0,255,255,0.15), rgba(0,0,0,0.9)); }
-  100% { background: radial-gradient(circle, rgba(0,255,255,0.25), rgba(0,0,0,0.9)); }
-}
+/* Efek glow pada elemen tertentu, bukan background body */
 
 /* === UI Panel (🎨 & 🔤) === */
 #uiPanel {
@@ -40,8 +54,8 @@ body.neon-bg {
 
 #uiPanel button {
   background: rgba(0,0,0,0.4);
-  border: 2px solid #00ffff;
-  color: #00ffff;
+  border: 2px solid var(--neon-bg-color, var(--neon-color));
+  color: var(--neon-bg-color, var(--neon-color));
   font-size: 22px;
   padding: 6px 8px;
   border-radius: 10px;
@@ -49,14 +63,14 @@ body.neon-bg {
   transition: all 0.3s ease;
 }
 #uiPanel button:hover {
-  background: #00ffff;
-  color: #000;
+  background: var(--neon-bg-color, var(--neon-color));
+  color: var(--bg-color);
 }
 
 #uiPanel select {
   background: rgba(0,0,0,0.8);
   color: #fff;
-  border: 1px solid #00ffff;
+  border: 1px solid var(--neon-bg-color, var(--neon-color));
   border-radius: 8px;
   padding: 5px 8px;
   font-size: 14px;
@@ -69,7 +83,7 @@ body.neon-bg {
   top: 45px;
   left: 0;
   background: rgba(0,0,0,0.85);
-  border: 1px solid #00ffff;
+  border: 1px solid var(--neon-bg-color, var(--neon-color));
   border-radius: 8px;
   padding: 6px;
   display: none;
@@ -79,6 +93,12 @@ body.neon-bg {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes neonPulse {
+  0% { box-shadow: inset 0 0 100px var(--neon-bg-color)33; }
+  50% { box-shadow: inset 0 0 150px var(--neon-bg-color)66; }
+  100% { box-shadow: inset 0 0 100px var(--neon-bg-color)33; }
 }
 
 #colorPanel.show, #fontPanel.show {
@@ -94,24 +114,23 @@ body.neon-bg {
   text-align: center;
   font-size: 14px;
 }
-.topbar a { color: #00ffff; text-decoration: none; }
+.topbar a { color: var(--neon-bg-color, var(--neon-color)); text-decoration: none; }
 
 /* === HEADER === */
 .site-header {
-  background: #000;
-  border-bottom: 2px solid #00ffff33;
+  background: var(--bg-color);
+  border-bottom: 2px solid var(--neon-bg-color, var(--neon-color))33;
   position: sticky;
   top: 0;
   z-index: 1000;
   padding: 10px 0;
 }
 
-/* Container flex tengah */
 .header-container {
   display: flex;
-  justify-content: center;   /* posisi ke tengah horizontal */
-  align-items: center;       /* sejajarkan vertikal */
-  gap: 60px;                 /* jarak antara logo dan menu */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
 /* === LOGO DAN TEKS === */
@@ -130,7 +149,7 @@ body.neon-bg {
 .brand-text {
   font-size: 1.8em;
   font-weight: 800;
-  color: #00ffff;
+  color: var(--neon-bg-color, var(--neon-color));
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -143,7 +162,7 @@ body.neon-bg {
 }
 
 .main-nav a {
-  color: #fff;
+  color: var(--text-color);
   text-decoration: none;
   font-weight: 700;
   font-size: 1em;
@@ -154,7 +173,7 @@ body.neon-bg {
 
 .main-nav a:hover,
 .main-nav a.active {
-  color: #00ffff;
+  color: var(--neon-bg-color, var(--neon-color));
 }
 
 /* === DROPDOWN === */
@@ -166,7 +185,7 @@ body.neon-bg {
   display: none;
   position: absolute;
   background: rgba(0, 0, 0, 0.95);
-  border: 1px solid #00ffff;
+  border: 1px solid var(--neon-bg-color, var(--neon-color));
   border-radius: 6px;
   padding: 5px 0;
   top: 30px;
@@ -182,75 +201,30 @@ body.neon-bg {
 }
 
 .dropdown-content a:hover {
-  background: #00ffff;
-  color: #000;
+  background: var(--neon-bg-color, var(--neon-color));
+  color: var(--bg-color);
 }
 
-.nav-dropdown:hover .dropdown-content {
+.dropdown-content.show {
   display: block;
 }
 
-/* 🔹 Menu Navigasi */
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 25px; /* jarak antar menu */
-}
-
-.main-nav a {
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  text-transform: capitalize;
-  transition: color 0.3s ease;
-}
-
-.main-nav a:hover,
-.main-nav a.active {
-  color: #00ffff;
-}
-
-.main-nav a:hover, .main-nav a.active {
-  color: #00ffff;
-}
-.nav-dropdown {
-  position: relative;
-  display: inline-block;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background: rgba(0,0,0,0.9);
-  border: 1px solid #00ffff;
-  border-radius: 8px;
-  padding: 5px;
-  min-width: 150px;
-  top: 25px;
-}
-.nav-dropdown:hover .dropdown-content {
-  display: block;
-}
-.dropdown-content a {
-  display: block;
-  padding: 5px;
-  color: #fff;
-  text-decoration: none;
-}
-.dropdown-content a:hover {
-  background: #00ffff;
-  color: #000;
+@media (min-width: 769px) {
+  .nav-dropdown:hover .dropdown-content {
+    display: block;
+  }
 }
 
 /* === HERO SECTION === */
 .hero {
   position: relative;
   overflow: hidden;
-  height: 75vh; /* sedikit lebih rendah agar tidak potong teks */
+  height: 75vh;
   background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 0; /* beri ruang atas bawah */
+  padding: 40px 0;
 }
 
 .slides {
@@ -268,10 +242,10 @@ body.neon-bg {
 }
 
 .slide img {
-  width: 90%;          /* sedikit lebih kecil agar tidak potong */
-  height: auto;        /* biar proporsional */
-  max-height: 70vh;    /* pastikan tidak potong layar */
-  object-fit: contain; /* tampilkan seluruh gambar */
+  width: 90%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
   object-position: center;
   background: #000;
   transition: transform 1s ease, opacity 0.5s ease;
@@ -283,7 +257,6 @@ body.neon-bg {
   opacity: 0.95;
 }
 
-/* Tombol Navigasi Hero */
 .scroll-btn {
   position: absolute;
   top: 50%;
@@ -291,7 +264,7 @@ body.neon-bg {
   background: rgba(0,0,0,0.4);
   border: none;
   font-size: 2em;
-  color: #00ffff;
+  color: var(--neon-bg-color, var(--neon-color));
   cursor: pointer;
   z-index: 10;
   padding: 10px 15px;
@@ -316,26 +289,33 @@ body.neon-bg {
 .hero-text h1 {
   font-size: 2.3em;
   margin-bottom: 10px;
-  text-shadow: 0 0 10px #00ffff;
+  text-shadow: 0 0 10px var(--neon-bg-color, var(--neon-color));
 }
 .hero-buttons { margin-top: 15px; }
 
-/* Responsif */
-@media (max-width: 768px) {
-  .hero {
-    height: 60vh;
-    padding: 20px 0;
-  }
-  .slide img {
-    width: 95%;
-    max-height: 55vh;
-  }
-  .hero-text h1 {
-    font-size: 1.4em;
-  }
+/* === Alasan Memilih Kami === */
+.alasan-kami {
+  padding: 80px 20px;
+  text-align: center;
+  max-width: 1200px; /* Batasi lebar untuk kerapian */
+  margin: 0 auto;
 }
 
-/* === Alasan Memilih Kami (Gaya seperti Tapada) === */
+.section-title {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: var(--neon-bg-color, var(--neon-color));
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.section-subtitle {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
 .alasan-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -349,7 +329,7 @@ body.neon-bg {
 
 .alasan-item {
   background: rgba(0, 0, 0, 0.4);
-  border: 1px solid #00ffff;
+  border: 1px solid var(--neon-bg-color, var(--neon-color));
   border-radius: 12px;
   padding: 20px;
   transition: transform 0.3s ease, border-color 0.3s ease;
@@ -366,7 +346,7 @@ body.neon-bg {
 }
 
 .alasan-item h3 {
-  color: #00ffff;
+  color: var(--neon-bg-color, var(--neon-color));
   margin: 10px 0;
   font-size: 1.3em;
 }
@@ -376,26 +356,33 @@ body.neon-bg {
   line-height: 1.6;
 }
 
-.buat-apa .btn.primary {
-  margin-top: 40px;
-  background: #00ffff;
-  color: #000;
-  padding: 12px 25px;
+.alasan-btn {
+  display: inline-block;
+  margin-top: 50px;
+  background: var(--neon-bg-color, var(--neon-color));
+  color: var(--bg-color);
   font-weight: bold;
+  padding: 14px 30px;
   border-radius: 8px;
   text-decoration: none;
   transition: background 0.3s ease;
 }
 
-.buat-apa .btn.primary:hover {
-  background: #FFD700;
+.center-btn {
+  display: block;
+  width: fit-content;
+  margin: 50px auto 0; /* Menengahkan tombol */
 }
 
+.alasan-btn:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
 
 /* === Footer === */
 .footer-light {
-  background: #000;
-  color: #fff;
+  background: var(--bg-color);
+  color: var(--text-color);
   padding: 40px 0 20px;
   text-align: left;
 }
@@ -405,9 +392,20 @@ body.neon-bg {
   justify-content: space-around;
   gap: 30px;
   padding: 0 20px;
+  max-width: 1200px; /* Batasi lebar footer */
+  margin: 0 auto; /* Menengahkan footer */
+}
+.footer-col {
+  max-width: 300px;
+}
+.footer-tagline {
+  font-style: italic;
+  font-size: 0.9em;
+  margin-top: 10px;
+  color: #aaa;
 }
 .footer-col h4 {
-  color: #00ffff;
+  color: var(--neon-bg-color, var(--neon-color));
   margin-bottom: 10px;
 }
 .footer-logo {
@@ -416,9 +414,9 @@ body.neon-bg {
 }
 .footer-bottom {
   text-align: center;
-  border-top: 1px solid #222;
-  margin-top: 20px;
-  padding-top: 10px;
+  border-top: 1px solid var(--neon-bg-color, var(--neon-color))33;
+  margin-top: 30px;
+  padding-top: 15px;
   font-size: 14px;
   color: #aaa;
 }
@@ -429,7 +427,7 @@ body.neon-bg {
   margin: 5px 0;
 }
 .footer-col a {
-  color: #00ffff;
+  color: var(--neon-bg-color, var(--neon-color));
   text-decoration: none;
 }
 
@@ -444,10 +442,13 @@ body.neon-bg {
   align-items: center;
   z-index: 3000;
 }
+.modal.show {
+  display: flex !important;
+}
 .modal-inner {
   position: relative;
   background: #000;
-  border: 2px solid #00ffff;
+  border: 2px solid var(--neon-bg-color, var(--neon-color));
   border-radius: 10px;
   padding: 10px;
   max-width: 90%;
@@ -458,13 +459,9 @@ body.neon-bg {
   top: 5px; right: 10px;
   background: none;
   border: none;
-  color: #00ffff;
+  color: var(--neon-bg-color, var(--neon-color));
   font-size: 20px;
   cursor: pointer;
-}
-.modal iframe {
-  width: 80vw;
-  height: 80vh;
 }
 .catalog-view {
   text-align: center;
@@ -481,122 +478,25 @@ body.neon-bg {
   margin-top: 10px;
 }
 .catalog-nav button {
-  background: #00ffff;
+  background: var(--neon-bg-color, var(--neon-color));
   border: none;
   padding: 6px 10px;
   border-radius: 6px;
   margin: 0 5px;
   cursor: pointer;
-  color: #000;
+  color: var(--bg-color);
   font-weight: 600;
 }
-/* === Neon Layer === */
-#neonLayer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  transition: background 0.5s ease;
-}
 
-/* === Perbaikan Modal Show === */
-.modal.show {
-  display: flex !important;
-}
-
-/* === Perbaikan UI Panel === */
-#uiPanel {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  z-index: 9999;
-}
-
-#uiPanel .control-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-#colorPanel, #fontPanel {
-  display: none;
-  margin-top: 6px;
-}
-
-#colorPanel:not(.hidden), #fontPanel:not(.hidden) {
-  display: block;
-}
-/* === Neon Layer Fix === */
-#neonLayer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  transition: background 0.5s ease, box-shadow 0.5s ease;
-}
-
-/* Efek cahaya neon halus */
-body.neon-bg #neonLayer {
-  box-shadow: 0 0 80px var(--neon-bg-color);
-  background: radial-gradient(circle at center, var(--neon-bg-color)33, #000000cc);
-}
-/* === HEADER HERO INFO (TEKS + TOMBOL DI SAMPING LOGO) === */
-.brand-block {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-
-.header-hero-info {
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
-  color: #fff;
-}
-
-.header-hero-info h1 {
-  font-size: 1.2rem;
-  color: #00ffff;
-  margin-bottom: 5px;
-}
-
-.header-hero-info p {
-  font-size: 0.9rem;
-  color: #ccc;
-  margin-bottom: 10px;
-}
-
-.header-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-@media (max-width: 900px) {
-  .brand-block {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .header-hero-info {
-    max-width: 100%;
-    text-align: left;
-  }
-}
 /* === Tombol Dark/Light di pojok kanan atas === */
 .theme-toggle {
   position: fixed;
   top: 15px;
   right: 20px;
-  background: rgba(0,0,0,0.5);
-  border: 2px solid #00ffff;
+  background: var(--bg-color);
+  border: 2px solid var(--neon-bg-color, var(--neon-color));
   border-radius: 10px;
-  color: #00ffff;
+  color: var(--neon-bg-color, var(--neon-color));
   font-size: 20px;
   cursor: pointer;
   padding: 8px 10px;
@@ -604,285 +504,193 @@ body.neon-bg #neonLayer {
   transition: all 0.3s ease;
 }
 .theme-toggle:hover {
-  background: #00ffff;
-  color: #000;
-}
-/* === Bagian Kamu Mau Buat Apa === */
-.buat-apa {
-  background: #000;
-  padding: 70px 20px;
-  text-align: center;
+  background: var(--neon-bg-color, var(--neon-color));
+  color: var(--bg-color);
 }
 
-.buat-apa h2 {
-  color: #00ffff;
-  font-size: 2.4em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-}
-
-.buat-apa .subtext {
-  color: #aaa;
-  font-size: 1.1em;
-  max-width: 800px;
-  margin: 0 auto 50px;
-  line-height: 1.6;
-}
-
-.sample-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-}
-
-.sample-card {
-  width: 200px;
-  background: rgba(0,0,0,0.5);
-  border: 1px solid #00ffff;
-  border-radius: 12px;
-  padding: 12px;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.sample-card:hover {
-  transform: translateY(-5px);
-  border-color: #FFD700;
-}
-
-.sample-card img {
-  width: 100%;
+/* === Tombol Hamburger (kanan atas) === */
+.hamburger {
+  display: none; /* Default: Sembunyikan di desktop */
+  position: fixed;
+  top: 15px;
+  right: 70px; /* Di sebelah kiri theme-toggle */
+  background: var(--bg-color);
+  border: 2px solid var(--neon-bg-color, var(--neon-color));
   border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.sample-card h3 {
-  color: #00ffff;
-  font-size: 1.1em;
-  margin: 0;
-}
-
-/* === Alasan Memilih Mahkota === */
-.alasan-kami {
-  background: #000;
-  padding: 80px 20px;
-  text-align: center;
-}
-
-.alasan-kami h2 {
-  color: #00ffff;
-  font-size: 2.4em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
-
-.alasan-kami .alasan-desc {
-  color: #aaa;
-  font-size: 1.05em;
-  max-width: 850px;
-  margin: 0 auto 50px;
-  line-height: 1.6;
-}
-
-.alasan-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-  justify-content: center;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.alasan-item {
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid #00ffff;
-  border-radius: 10px;
-  padding: 25px;
+  color: var(--neon-bg-color, var(--neon-color));
+  font-size: 26px;
+  cursor: pointer;
+  padding: 6px 10px;
+  z-index: 2000;
   transition: all 0.3s ease;
 }
-
-.alasan-item:hover {
-  transform: translateY(-5px);
-  border-color: #FFD700;
+.hamburger:hover {
+  background: var(--neon-bg-color, var(--neon-color));
+  color: var(--bg-color);
 }
 
-.alasan-item .icon {
-  font-size: 2.3em;
-  color: #FFD700;
-  margin-bottom: 12px;
-}
-
-.alasan-item h3 {
-  color: #00ffff;
-  font-size: 1.3em;
-  margin-bottom: 8px;
-}
-
-.alasan-item p {
-  color: #ccc;
-  line-height: 1.5;
-  font-size: 0.95em;
-}
-
-/* Tombol di bawah alasan */
-.alasan-btn {
-  display: inline-block;
-  margin-top: 50px;
-  background: #00ffff;
-  color: #000;
-  font-weight: bold;
-  padding: 14px 30px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
-
-.alasan-btn:hover {
-  background: #FFD700;
-}
-/* === Mobile Responsive Fix === */
+/* === Responsif Mobile (<= 768px) === */
 @media (max-width: 768px) {
-  .nav-inner {
+  /* Sembunyikan menu navigasi default */
+  .main-nav {
+    display: none;
+  }
+  
+  /* Header Container Mobile: Pastikan logo dan menu desktop hilang */
+  .header-container {
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  
+  /* Logo Mahkota di mobile dibuat lebih kecil dan ringkas */
+  .header-container .brand {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  .header-container .logo {
+    width: 40px;
+  }
+  .header-container .brand-text {
+    font-size: 1.2em;
+    line-height: 1.2;
+  }
+
+  /* Tampilan menu sidebar saat aktif */
+  .main-nav.active {
+    display: flex;
     flex-direction: column;
-    text-align: center;
-    gap: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%; /* Sedikit lebih lebar dari sebelumnya */
+    max-width: 300px;
+    height: 100%;
+    background: var(--bg-color); /* Menggunakan warna background tema */
+    z-index: 1000;
+    padding: 0; /* Hapus padding-top */
+    align-items: flex-start;
+    box-shadow: -2px 0 10px var(--neon-bg-color, var(--neon-color));
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+  }
+  
+  .main-nav:not(.active) {
+    transform: translateX(100%);
+  }
+  
+  /* Header Menu Mobile (Logo dan Tombol Tutup) - Dibuat lebih menonjol */
+  .mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px 20px;
+    /* Border bawah lebih tebal dan jelas */
+    border-bottom: 2px solid var(--neon-bg-color, var(--neon-color));
+    background: var(--bg-color);
+  }
+  
+  .mobile-menu-header .brand {
+    gap: 8px;
+  }
+  .mobile-menu-header .logo {
+    width: 40px;
+  }
+  .mobile-menu-header .brand-text {
+    /* Warna teks logo di mobile dibuat lebih kontras */
+    color: var(--neon-bg-color, var(--neon-color));
+    font-size: 1.2em;
   }
 
+  /* Tombol Tutup - Dibuat seperti kotak Tapada */
+  .close-btn {
+    display: block;
+    background: var(--text-color); /* Warna background tombol tutup */
+    border: 1px solid var(--text-color);
+    color: var(--bg-color); /* Warna X */
+    font-size: 18px; /* Ukuran font lebih kecil */
+    cursor: pointer;
+    padding: 5px 10px; /* Padding untuk membuat kotak */
+    border-radius: 4px;
+    font-weight: bold;
+    line-height: 1;
+  }
+  
+  /* Link Navigasi di Mobile */
   .main-nav a {
-    display: inline-block;
-    margin: 5px 8px;
-    font-size: 16px;
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 1.1em;
+    color: var(--text-color); /* Warna font sesuai tema */
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
-
-  .hero {
-    height: 60vh;
+  
+  .main-nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
-
-  .slide {
-    height: 60vh;
+  
+  /* Dropdown Pricelist di Mobile */
+  .nav-dropdown {
+    width: 100%;
   }
-
-  .hero-text h1 {
-    font-size: 1.5em;
+  .dropdown-content {
+    position: static;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0;
   }
-
-  .hero-text .btn {
-    padding: 8px 14px;
-    font-size: 14px;
+  .dropdown-content a {
+    padding-left: 40px;
+    font-size: 1em;
+    border-bottom: none;
   }
-
+  
+  /* Penyesuaian tombol hamburger dan theme toggle */
+  .hamburger {
+    display: block;
+    right: 70px;
+  }
+  .theme-toggle {
+    right: 15px;
+  }
   .topbar {
     font-size: 12px;
     line-height: 1.4;
     padding: 4px 0;
   }
-
-  #uiPanel {
-    top: 10px;
-    left: 10px;
-    gap: 6px;
+  .header-container {
+    padding: 0 10px;
   }
-
-  .sample-gallery {
-    flex-direction: column;
-    align-items: center;
+  
+  .hero {
+    height: 60vh;
+    padding: 20px 0;
   }
-
-  .sample-card {
-    width: 80%;
+  .slide img {
+    width: 95%;
+    max-height: 55vh;
   }
-
+  .hero-text h1 {
+    font-size: 1.4em;
+  }
   .catalog-view img {
     width: 90%;
   }
 }
-/* === Mobile Sidebar Menu (hamburger) === */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 26px;
-  height: 20px;
-  cursor: pointer;
-  z-index: 2000;
-  margin-left: 12px;
-}
-.menu-toggle span {
-  height: 3px;
-  width: 100%;
-  background: #00ffff;
-  border-radius: 3px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
 
-/* default nav-links layout (desktop) */
-.nav-links { display: flex; align-items:center; gap: 1.5rem; }
-.nav-links ul { display:flex; gap:1rem; list-style:none; margin:0; padding:0; align-items:center; }
-
-/* mobile behaviour */
-@media (max-width: 768px) {
-  .menu-toggle { display: flex; }
-
-  /* sidebar */
-  .nav-links {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    height: 100vh;
-    width: 78%;
-    max-width: 420px;
-    background-color: rgba(0,0,0,0.98);
-    flex-direction: column;
-    align-items: flex-start;
+/* Sembunyikan hamburger di desktop */
+@media (min-width: 769px) {
+  .hamburger, .close-btn, .mobile-menu-header {
+    display: none !important;
+  }
+  .header-container {
     justify-content: center;
-    padding-left: 2.2rem;
-    gap: 1.8rem;
-    transition: left 0.35s cubic-bezier(.2,.9,.2,1);
-    z-index: 1500;
-    box-shadow: 4px 0 18px rgba(0,0,0,0.6);
+    gap: 60px;
   }
-
-  .nav-links ul { flex-direction: column; width:100%; }
-  .nav-links ul li { width:100%; margin: 6px 0; }
-  .nav-links ul li a {
-    display:block;
-    padding: 12px 0;
-    color: #ffffff;
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 1.05rem;
-  }
-
-  /* when active (open) */
-  .nav-links.active { left: 0; }
-
-  /* hamburger -> X animation */
-  .menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-    background: #ffffff;
-  }
-  .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-    background: #ffffff;
-  }
-
-  /* make sure header content doesn't overlap poorly */
-  .nav-inner { padding: 10px 14px; gap: 10px; }
-
-  /* optional: slightly dim background when menu open */
-  body.mobile-menu-open::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 1400;
-    pointer-events: none;
-    transition: opacity 0.3s;
-  }
-  body.mobile-menu-open .nav-links { z-index: 1501; }
 }
