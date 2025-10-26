@@ -9,6 +9,9 @@
 </head>
 
 <body>
+  <!-- 🌈 Efek Lampu Neon -->
+  <div id="neonLayer"></div>
+
   <!-- 🌈 Panel Warna -->
   <div id="uiPanel">
     <div class="control-group">
@@ -43,14 +46,24 @@
 
   <!-- 🧢 Header -->
   <header class="site-header">
-    <div class="nav-inner" style="width:90%; margin:auto; align-items:center; justify-content:space-between;">
+    <div class="nav-inner" style="width:90%; margin:auto; display:flex; align-items:center; justify-content:space-between;">
+
+      <!-- ☰ Hamburger di kiri -->
+      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button" style="margin-right:10px;">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
       <!-- Logo / Brand -->
       <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
         <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota" style="height:48px;">
-        <span class="brand-text" style="color:#00ffff; font-weight:700;">MAHKOTA <small style="display:block; font-weight:600; color:#fff; font-size:0.8rem;">SABLON DAN KAOS POLOS</small></span>
+        <span class="brand-text" style="color:#00ffff; font-weight:700;">MAHKOTA 
+          <small style="display:block; font-weight:600; color:#fff; font-size:0.8rem;">SABLON DAN KAOS POLOS</small>
+        </span>
       </a>
 
-      <!-- NAV LINKS (dibungkus untuk sidebar mobile) -->
+      <!-- NAV LINKS -->
       <div class="nav-links" id="nav-links" aria-hidden="true">
         <ul>
           <li><a href="#" class="active">HOME</a></li>
@@ -67,13 +80,6 @@
           <li><a href="cara-order.html">CARA ORDER</a></li>
           <li><a href="#" id="openCatalog">KATALOG</a></li>
         </ul>
-      </div>
-
-      <!-- Hamburger Toggle -->
-      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button">
-        <span></span>
-        <span></span>
-        <span></span>
       </div>
     </div>
   </header>
