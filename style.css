@@ -742,3 +742,59 @@ body.neon-bg #neonLayer {
 .alasan-btn:hover {
   background: #FFD700;
 }
+/* === Mobile Responsive Fix === */
+@media (max-width: 768px) {
+  .nav-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .main-nav a {
+    display: inline-block;
+    margin: 5px 8px;
+    font-size: 16px;
+  }
+
+  .hero {
+    height: 60vh;
+  }
+
+  .slide {
+    height: 60vh;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5em;
+  }
+
+  .hero-text .btn {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  .topbar {
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 4px 0;
+  }
+
+  #uiPanel {
+    top: 10px;
+    left: 10px;
+    gap: 6px;
+  }
+
+  .sample-gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sample-card {
+    width: 80%;
+  }
+
+  .catalog-view img {
+    width: 90%;
+  }
+}
