@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mahkota — Cara Order</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="themeToggle" class="theme-toggle">🌓</button>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><img src="assets/logo-mahkota.png" alt="Mahkota" class="logo"><span class="brand-text">Mahkota</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="katalog.html">Katalog</a>
+        <a href="pricelist.html">Pricelist</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="cara-order.html" class="active">Cara Order</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container content-page">
+    <h1>Cara Order</h1>
+    <ol class="steps">
+      <li>Pilih produk & spesifikasi (ukuran, warna, jumlah).</li>
+      <li>Kirim file desain (PNG/JPG/PDF) ke email atau WA kami.</li>
+      <li>Kami buatkan proof & estimasi harga.</li>
+      <li>Konfirmasi & bayar DP; produksi akan berlangsung sesuai timeline.</li>
+      <li>Pengiriman dilakukan setelah QC dan konfirmasi.</li>
+    </ol>
+
+    <div class="order-cta">
+      <a class="btn primary" href="https://wa.me/6285257778761" target="_blank">Order via WhatsApp</a>
+      <a class="btn ghost" href="mailto:info@mahkota.co.id">Kirim Email</a>
+    </div>
+  </main>
+
+  <footer class="footer footer-light">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <img src="assets/logo-mahkota.png" alt="Logo Mahkota" class="footer-logo">
+        <p><strong>Mahkota Custom Apparel & Merchandise</strong></p>
+        <p>Spesialis sablon dan konveksi berkualitas tinggi di Wajo dan sekitarnya.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Layanan Kami</h4>
+        <ul>
+          <li>Sablon Manual</li>
+          <li>Sablon DTF</li>
+          <li>Konveksi</li>
+          <li>Merchandise</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <ul class="contact-list">
+          <li>📞 <a href="https://wa.me/6285257778761">0852-5777-8761</a></li>
+          <li>📧 info@mahkota.co.id</li>
+          <li>📸 <a href="https://instagram.com/mahkota_sablonkaossengkang" target="_blank">@mahkota_sablonkaossengkang</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2020 – <span id="year"></span> Mahkota Custom Apparel & Merchandise</div>
+  </footer>
+
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-inner">
+      <button id="modalClose" class="modal-close">✕</button>
+      <div id="modalContent" class="pdf-container"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

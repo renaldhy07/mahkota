@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mahkota — Pricelist</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #f8f8f8;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .topbar {
+      background-color: #222;
+      color: #fff;
+      font-size: 14px;
+      padding: 6px 0;
+    }
+    .topbar .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .topbar a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+    .topbar a:hover {
+      text-decoration: underline;
+    }
+
+    .pdf-container {
+      max-width: 1000px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .pdf-container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #d4af37;
+    }
+
+    iframe {
+      width: 100%;
+      height: 90vh;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .footer-light {
+      background: #fff;
+      color: #000;
+      padding: 40px 20px;
+      border-top: 2px solid #eee;
+    }
+
+    .dropdown-content a.active {
+      font-weight: bold;
+      color: #d4af37;
+    }
+  </style>
+</head>
+<body>
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌓</button>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="contact-item">
+        📞 <a href="https://wa.me/6285257778761" target="_blank" rel="noopener">0852-5777-8761</a>
+      </div>
+      <div class="contact-item">
+        📍 <a href="https://maps.google.com/?q=RFH3+3M7+Kassi-Kassi,+Kota+Makassar,+Sulawesi+Selatan" target="_blank" rel="noopener">
+          Kassi-Kassi, Kota Makassar, Sulawesi Selatan
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo-mahkota.png" alt="Mahkota" class="logo">
+        <span class="brand-text">Mahkota</span>
+      </a>
+
+      <nav class="main-nav" role="navigation">
+        <a href="index.html">Home</a>
+        <a href="tentang.html">Tentang</a>
+
+        <div class="nav-dropdown">
+          <a href="#" class="dropbtn active">Pricelist ▾</a>
+          <div class="dropdown-content">
+            <a href="#" class="pdf-link" data-file="sablon">Pricelist Sablon</a>
+            <a href="#" class="pdf-link" data-file="konveksi">Pricelist Konveksi</a>
+            <a href="#" class="pdf-link" data-file="merchandise">Pricelist Merchandise</a>
+          </div>
+        </div>
+
+        <a href="portfolio.html">Portfolio</a>
+        <a href="cara-order.html">Cara Order</a>
+        <a href="katalog.html">Katalog</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="pdf-container">
+    <h1 id="pdfTitle">Pricelist Sablon Mahkota</h1>
+    <iframe id="pdfViewer" src="assets/pdf.pdf"></iframe>
+  </div>
+
+  <footer class="footer-light">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <img src="assets/logo-mahkota.png" alt="Logo Mahkota" class="footer-logo">
+        <p>Perusahaan sablon & konveksi yang berkomitmen menghadirkan produk apparel custom berkualitas tinggi untuk komunitas, bisnis, dan event.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Layanan Kami</h4>
+        <ul>
+          <li>Sablon Manual</li>
+          <li>Sablon DTF</li>
+          <li>Konveksi</li>
+          <li>Merchandise</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <ul class="contact-list">
+          <li>📞 <a href="https://wa.me/6285257778761" target="_blank" rel="noopener">0852-5777-8761</a></li>
+          <li>📧 info@mahkota.co.id</li>
+          <li>📸 <a href="https://instagram.com/mahkota_sablonkaossengkang" target="_blank" rel="noopener">@mahkota_sablonkaossengkang</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2020 – <span id="year"></span> Mahkota Custom Apparel & Merchandise</div>
+  </footer>
+
+  <script>
+    const pdfViewer = document.getElementById("pdfViewer");
+    const pdfTitle = document.getElementById("pdfTitle");
+    const pdfLinks = document.querySelectorAll(".pdf-link");
+
+    const pdfFiles = {
+      sablon: {
+        path: "assets/pdf.pdf",
+        title: "Pricelist Sablon Mahkota"
+      },
+      konveksi: {
+        path: "assets/pricelist-konveksi.pdf",
+        title: "Pricelist Konveksi Mahkota"
+      },
+      merchandise: {
+        path: "assets/pricelist-merchandise.pdf",
+        title: "Pricelist Merchandise Mahkota"
+      }
+    };
+
+    pdfLinks.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const type = link.dataset.file;
+        const pdf = pdfFiles[type];
+
+        if (pdf) {
+          pdfViewer.src = pdf.path;
+          pdfTitle.textContent = pdf.title;
+
+          // Update active link
+          pdfLinks.forEach(l => l.classList.remove("active"));
+          link.classList.add("active");
+        }
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
