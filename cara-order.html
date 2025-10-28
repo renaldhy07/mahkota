@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MAHKOTA — Cara Order</title>
+  <title class="neon-text-blink">MAHKOTA KONVEKSI & PERCETAKAN — Cara Order</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -16,43 +16,36 @@
   <!-- ☰ Tombol Hamburger -->
   <button id="hamburger" class="hamburger" aria-label="Toggle navigation">☰</button>
 
-  <!-- 🔝 Topbar -->
-  <div class="topbar">
-    <div class="contact-combo">
-      📞 <a href="https://wa.me/6285257778761" target="_blank">0852-5777-8761</a> |
-      📍 <a href="https://maps.google.com/?q=RFH3+3M7+Kassi-Kassi,+Kota+Makassar,+Sulawesi+Selatan" target="_blank">
-      Kassi-Kassi, Kota Makassar, Sulawesi Selatan</a>
-    </div>
-  </div>
+
 
   <!-- 🧢 Header -->
   <header class="site-header">
     <div class="header-container">
       <a class="brand" href="index.html">
         <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota">
-        <span class="brand-text">MAHKOTA</span>
+        <span class="brand-text neon-text-blink">MAHKOTA KONVEKSI & PERCETAKAN</span>
       </a>
 
       <nav class="main-nav" id="nav-links">
         <div class="mobile-menu-header">
           <a class="brand" href="index.html">
             <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota">
-            <span class="brand-text">MAHKOTA</span>
+            <span class="brand-text neon-text-blink">MAHKOTA KONVEKSI & PERCETAKAN</span>
           </a>
           <button id="closeMenu" class="close-btn">✕</button>
         </div>
-        <a href="index.html" class="mobile-link">HOME</a>
-        <a href="tentang.html" class="mobile-link">TENTANG</a>
+        <a href="index.html" class="mobile-link neon-text-blink">HOME</a>
+        <a href="tentang.html" class="mobile-link neon-text-blink">TENTANG</a>
         <div class="nav-dropdown">
-          <a href="#" class="dropbtn">PRICELIST ▾</a>
+          <a href="#" class="dropbtn neon-text-blink">PRICELIST ▾</a>
           <div class="dropdown-content">
             <a href="assets/pdf.pdf" target="_blank">Pricelist Sablon</a>
             <a href="assets/pricelist-konveksi.pdf" target="_blank">Pricelist Konveksi</a>
           </div>
         </div>
-        <a href="portfolio.html" class="mobile-link">PORTFOLIO</a>
-        <a href="cara-order.html" class="active mobile-link">CARA ORDER</a>
-        <a href="#" id="openCatalog" class="mobile-link">KATALOG</a>
+        <a href="portfolio.html" class="mobile-link neon-text-blink">PORTFOLIO</a>
+        <a href="cara-order.html" class="active mobile-link neon-text-blink">CARA ORDER</a>
+        <a href="#" id="openCatalog" class="mobile-link neon-text-blink">KATALOG</a>
       </nav>
     </div>
   </header>
@@ -60,10 +53,10 @@
   <main>
     <section class="content-page">
       <div class="container">
-        <h1 class="section-title">CARA ORDER</h1>
+        <h1 class="section-title neon-text-blink">CARA ORDER</h1>
         <ol class="steps">
           <li>Pilih produk & spesifikasi (ukuran, warna, jumlah).</li>
-          <li>Kirim file desain (PNG/JPG/PDF) ke email atau WA kami.</li>
+          <li>Kirim file desain (PNG/JPG/PDF) ke WhatsApp kami.</li>
           <li>Kami buatkan proof & estimasi harga.</li>
           <li>Konfirmasi & bayar DP; produksi akan berlangsung sesuai timeline.</li>
           <li>Pengiriman dilakukan setelah QC dan konfirmasi.</li>
@@ -71,11 +64,28 @@
   
         <div class="order-cta">
           <a class="btn primary" href="https://wa.me/6285257778761" target="_blank"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
-          <a class="btn ghost" href="mailto:info@mahkota.co.id"><i class="fas fa-envelope"></i> Kirim Email</a>
+
         </div>
       </div>
     </section>
   </main>
+
+  <!-- 🔝 Topbar (Hanya untuk Desktop) -->
+  <div class="topbar">
+    <div class="contact-combo">
+      📞 <a href="https://wa.me/6285257778761" target="_blank">+6285257778761</a> |
+      📍 <a href="https://maps.app.goo.gl/nSvQjBmgXp452UGH7" target="_blank">
+      Jl. Aroeppala Permata Hijau Permai No.J/37, Kassi-Kassi, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90222</a>
+    </div>
+  </div>
+
+  <!-- 📞 Mobile Contact Bar (Tampil di Mobile, Pindah dari Topbar) -->
+  <section class="mobile-contact-bar">
+    <div class="contact-combo">
+      📞 <a href="https://wa.me/6285257778761" target="_blank">+6285257778761</a>
+      📍 <a href="https://maps.app.goo.gl/nSvQjBmgXp452UGH7" target="_blank">Jl. Aroeppala Permata Hijau Permai No.J/37, Kassi-Kassi, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90222</a>
+    </div>
+  </section>
 
   <!-- ⚙️ Footer -->
   <footer class="footer-light">
@@ -85,14 +95,14 @@
         <p class="footer-tagline">Solusi Apparel Custom Berkualitas. Cepat, Berpengalaman, dan Bergaransi.</p>
       </div>
       <div class="footer-col">
-        <h4>Layanan Kami</h4>
+        <h4 class="neon-text-blink">Layanan Kami</h4>
         <ul><li>Sablon Manual</li><li>Sablon DTF</li><li>Konveksi</li></ul>
       </div>
       <div class="footer-col">
-        <h4>Kontak</h4>
+        <h4 class="neon-text-blink">Kontak</h4>
         <ul class="contact-list">
-          <li>📞 <a href="https://wa.me/6285257778761" target="_blank">0852-5777-8761</a></li>
-          <li>📧 info@mahkota.co.id</li>
+          <li>📞 <a href="https://wa.me/6285257778761" target="_blank">+6285257778761</a></li>
+          
           <li>📸 <a href="https://instagram.com/mahkota_sablonkaossengkang" target="_blank">@mahkota_sablonkaossengkang</a></li>
         </ul>
       </div>
@@ -118,4 +128,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-

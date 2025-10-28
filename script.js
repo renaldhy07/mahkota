@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const catalogImage = document.getElementById('catalogImage');
   const nextCatalog = document.getElementById('nextCatalog');
   const prevCatalog = document.getElementById('prevCatalog');
-  const catalogImages = ['assets/catalog1.jpg', 'assets/catalog2.jpg', 'assets/catalog3.jpg'];
+  const catalogImages = ['assets/catalog1.jpg', 'assets/catalog2.jpg'];
   let catalogIndex = 0;
 
   function updateCatalogImage() {
@@ -191,18 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Memperbaiki masalah hilang cepat di desktop (hover)
-    const navDropdown = document.querySelector('.nav-dropdown');
-    navDropdown.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 768) {
-        dropdownContent.classList.add('show');
-      }
-    });
-    navDropdown.addEventListener('mouseleave', () => {
-      if (window.innerWidth > 768) {
-        dropdownContent.classList.remove('show');
-      }
-    });
+
   }
 
 }); // DOMContentLoaded end

@@ -69,14 +69,120 @@ body.light-mode {
 }
 
 /* === UI Panel Dihapus === */
+/* === THEME TOGGLE BUTTON STYLES === */
 
-/* === Topbar === */
+
+body.dark-neon .theme-toggle {
+  /* Neon Blink Effect */
+  animation: neon-blink-slow 2s infinite alternate;
+  box-shadow: 0 0 5px var(--neon-bg-color), 0 0 15px var(--neon-bg-color), 0 0 25px var(--neon-bg-color);
+  border: 2px solid var(--neon-bg-color);
+}
+
+body.dark-neutral .theme-toggle,
+body.light-neutral .theme-toggle {
+  /* Reset styles for non-neon modes */
+  animation: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: none;
+  background: var(--accent-color);
+  color: var(--bg-color);
+}
+
+/* Keyframes untuk efek kedip neon slow-motion */
+@keyframes neon-blink-slow {
+  0% {
+    opacity: 1;
+    box-shadow: 0 0 5px var(--neon-bg-color), 0 0 15px var(--neon-bg-color), 0 0 25px var(--neon-bg-color);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 2px var(--neon-bg-color), 0 0 8px var(--neon-bg-color), 0 0 12px var(--neon-bg-color);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 5px var(--neon-bg-color), 0 0 15px var(--neon-bg-color), 0 0 25px var(--neon-bg-color);
+  }
+}
+
+/* Class untuk efek neon berkedip pada teks */
+.neon-text-blink {
+  text-shadow: 0 0 8px var(--neon-bg-color), 0 0 15px var(--neon-bg-color); /* Increased shadow for visibility */
+  transition: text-shadow 0.5s ease, color 0.5s ease;
+  color: var(--neon-bg-color); /* Apply neon color to the text itself */
+}
+
+body.dark-neon .neon-text-blink {
+  animation: text-blink 3s infinite alternate;
+}
+
+@keyframes text-blink {
+  0% {
+    text-shadow: 0 0 3px var(--neon-bg-color), 0 0 8px var(--neon-bg-color); /* Increased minimum shadow */
+    color: var(--neon-bg-color);
+  }
+  100% {
+    text-shadow: 0 0 8px var(--neon-bg-color), 0 0 15px var(--neon-bg-color); /* Increased maximum shadow */
+    color: var(--neon-bg-color);
+  }
+}
+
+/* Keyframes neonPulse yang sudah ada */
+@keyframes neonPulse {
+  0% {
+    border-color: var(--neon-bg-color);
+    box-shadow: inset 0 0 100px var(--neon-bg-color)33;
+  }
+  100% {
+    border-color: var(--neon-bg-color);
+    box-shadow: inset 0 0 100px var(--neon-bg-color)55;
+  }
+}
+
+/* === Tombol Hamburger === */
+.hamburger {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 2000;
+  background: var(--accent-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 8px;
+  display: none; /* Default hidden on desktop */
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  
+  /* Posisikan tombol tema agar tidak bertabrakan dengan hamburger */
+  .theme-toggle {
+    top: 15px;
+    right: 75px; /* Pindah ke kiri hamburger */
+    bottom: auto;
+  }
+}
+
+/* MOBILE MENU OVERLAY */
+.main-nav {
+  /* ... definisi yang sudah ada ... */
+}
+
+/* ... sisa CSS ... */
+
+
+/* === Topbar (Hanya untuk Desktop) === */
 .topbar {
   background: var(--bg-color); /* Menggunakan warna background tema */
   border-bottom: 1px solid var(--accent-color)1A;
   padding: 6px 20px; /* Tambahkan padding horizontal */
   font-size: 14px;
-  display: flex;
+  display: none; /* Default: Sembunyikan */
   justify-content: center; /* Pusatkan di desktop */
   z-index: 1001; /* Pastikan topbar di atas header saat sticky, tapi di bawah tombol fixed */
 }
@@ -88,6 +194,54 @@ body.light-mode {
   justify-content: center;
 }
 .topbar a { color: var(--accent-color); text-decoration: none; }
+
+/* === Mobile Contact Bar (Baru) === */
+.mobile-contact-bar {
+  display: none; /* Default hidden on desktop */
+  padding: 15px 20px;
+  background: var(--bg-color);
+  border-top: 1px solid var(--accent-color)33;
+  text-align: center;
+}
+
+.mobile-contact-bar .contact-combo {
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.9em;
+  color: var(--text-color);
+}
+
+.mobile-contact-bar .contact-combo a {
+  color: var(--accent-color);
+  text-decoration: none;
+  display: block;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  /* Sembunyikan Topbar lama di mobile */
+  .topbar {
+    display: none !important; /* Pastikan tersembunyi */
+  }
+
+  /* Tampilkan Mobile Contact Bar di mobile */
+  .mobile-contact-bar {
+    display: block;
+  }
+  
+  /* Hapus padding yang tidak perlu */
+  .site-header {
+    padding-top: 10px; /* Kembali ke nilai default atau yang sesuai */
+  }
+}
+
+@media (min-width: 769px) {
+  .topbar {
+    display: flex !important; /* Tampilkan di desktop */
+  }
+}
 
 /* === HEADER === */
 .site-header {
@@ -121,11 +275,18 @@ body.light-mode {
 
 .brand-text {
   font-family: var(--font-title, 'Inter', sans-serif);
-  font-size: 1.8em;
+  font-size: 1.2em; /* Ukuran font lebih kecil agar tidak menumpuk */
   font-weight: 800;
   color: var(--accent-color); /* Menggunakan accent-color */
   letter-spacing: 1px;
   text-transform: uppercase;
+  white-space: nowrap; /* Mencegah teks melipat */
+}
+
+@media (max-width: 768px) {
+  .brand-text {
+    font-size: 1.0em; /* Lebih kecil lagi di mobile */
+  }
 }
 
 /* === MENU NAVIGASI === */
@@ -186,6 +347,8 @@ body.light-mode {
 @media (min-width: 769px) {
   .nav-dropdown:hover .dropdown-content {
     display: block;
+    /* Tambahkan sedikit delay untuk mencegah hilang terlalu cepat */
+    transition-delay: 0.1s;
   }
 }
 
@@ -273,6 +436,37 @@ body.light-mode {
   text-shadow: 0 0 10px var(--neon-bg-color, var(--neon-color));
 }
 .hero-buttons { margin-top: 15px; }
+
+/* === PORTFOLIO GRID === */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.portfolio-item {
+  background: var(--bg-color);
+  border: 1px solid var(--accent-color)33;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px var(--accent-color)55;
+}
+
+.portfolio-img {
+  width: 100%;
+  height: 300px; /* Tinggi tetap untuk konsistensi */
+  object-fit: cover; /* Memastikan gambar mengisi area tanpa terdistorsi */
+  display: block;
+}
 
 /* === Alasan Memilih Kami === */
 .alasan-kami {
