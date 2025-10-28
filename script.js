@@ -5,23 +5,57 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // === THEME TOGGLE ===
+  // === THEME TOGGLE (3-Mode: Dark Neon, Dark Neutral, Light Neutral) ===
   const themeToggle = document.getElementById('themeToggle');
+
+  const THEME_MODES = ['dark-neon', 'dark-neutral', 'light-neutral'];
+  let currentModeIndex = 0;
+
   const applyStoredTheme = () => {
-    const t = localStorage.getItem('theme');
-    if (t === 'light') document.body.classList.add('light-mode');
-    else document.body.classList.remove('light-mode');
+    let storedMode = localStorage.getItem('themeMode') || 'dark-neon';
+    currentModeIndex = THEME_MODES.indexOf(storedMode);
+    if (currentModeIndex === -1) {
+      currentModeIndex = 0;
+      storedMode = 'dark-neon';
+    }
+
+    document.body.classList.remove('dark-neon', 'dark-neutral', 'light-neutral');
+    document.body.classList.add(storedMode);
+
+    // Update tombol toggle
+    if (themeToggle) {
+      if (storedMode === 'dark-neon') themeToggle.textContent = '✨';
+      else if (storedMode === 'dark-neutral') themeToggle.textContent = '🌙';
+      else themeToggle.textContent = '☀️';
+    }
   };
-  applyStoredTheme();
+
   if (themeToggle) {
     themeToggle.addEventListener('click', (e) => {
       e.preventDefault();
-      document.body.classList.toggle('light-mode');
-      localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-      
-      // Rotasi warna neon hanya ketika berganti ke Dark Mode (atau tetap di Dark Mode)
-      if (!document.body.classList.contains('light-mode')) {
+
+      // Pindah ke mode berikutnya
+      currentModeIndex = (currentModeIndex + 1) % THEME_MODES.length;
+      const newMode = THEME_MODES[currentModeIndex];
+
+      // Hapus mode lama, tambahkan mode baru
+      document.body.classList.remove('dark-neon', 'dark-neutral', 'light-neutral');
+      document.body.classList.add(newMode);
+      localStorage.setItem('themeMode', newMode);
+
+      // Update tombol toggle
+      if (newMode === 'dark-neon') themeToggle.textContent = '✨';
+      else if (newMode === 'dark-neutral') themeToggle.textContent = '🌙';
+      else themeToggle.textContent = '☀️';
+
+      // Rotasi warna neon hanya jika beralih ke Dark Neon
+      if (newMode === 'dark-neon') {
         rotateNeonColor();
+      }
+      
+      // Pastikan warna neon default diatur jika beralih ke mode non-neon
+      if (newMode !== 'dark-neon') {
+         document.body.style.setProperty('--neon-bg-color', NEON_COLORS[currentColorIndex]);
       }
     });
   }
@@ -56,6 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     applyNeonColor(NEON_COLORS[0]); // Default: Yellow
   }
+  
+  // Panggil applyStoredTheme untuk inisiasi tema yang benar setelah warna neon diatur
+  applyStoredTheme();
 
   // === CATALOG MODAL ===
   const catalogModal = document.getElementById('catalogModal');

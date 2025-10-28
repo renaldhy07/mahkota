@@ -3,56 +3,100 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mahkota — Portfolio</title>
+  <title>MAHKOTA — Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
-  <button id="themeToggle" class="theme-toggle">🌓</button>
 
+<body>
+  <!-- 🌙 Tombol Neon/Tema -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle neon color">✨</button>
+
+  <!-- ☰ Tombol Hamburger -->
+  <button id="hamburger" class="hamburger" aria-label="Toggle navigation">☰</button>
+
+  <!-- 🔝 Topbar -->
+  <div class="topbar">
+    <div class="contact-combo">
+      📞 <a href="https://wa.me/6285257778761" target="_blank">0852-5777-8761</a> |
+      📍 <a href="https://maps.google.com/?q=RFH3+3M7+Kassi-Kassi,+Kota+Makassar,+Sulawesi+Selatan" target="_blank">
+      Kassi-Kassi, Kota Makassar, Sulawesi Selatan</a>
+    </div>
+  </div>
+
+  <!-- 🧢 Header -->
   <header class="site-header">
-    <div class="container nav-inner">
-      <a class="brand" href="index.html"><img src="assets/logo-mahkota.png" alt="Mahkota" class="logo"><span class="brand-text">Mahkota</span></a>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="tentang.html">Tentang</a>
-        <a href="katalog.html">Katalog</a>
-        <a href="pricelist.html">Pricelist</a>
-        <a href="portfolio.html" class="active">Portfolio</a>
-        <a href="cara-order.html">Cara Order</a>
+    <div class="header-container">
+      <a class="brand" href="index.html">
+        <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota">
+        <span class="brand-text">MAHKOTA</span>
+      </a>
+
+      <nav class="main-nav" id="nav-links">
+        <div class="mobile-menu-header">
+          <a class="brand" href="index.html">
+            <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota">
+            <span class="brand-text">MAHKOTA</span>
+          </a>
+          <button id="closeMenu" class="close-btn">✕</button>
+        </div>
+        <a href="index.html" class="mobile-link">HOME</a>
+        <a href="tentang.html" class="mobile-link">TENTANG</a>
+        <div class="nav-dropdown">
+          <a href="#" class="dropbtn">PRICELIST ▾</a>
+          <div class="dropdown-content">
+            <a href="assets/pdf.pdf" target="_blank">Pricelist Sablon</a>
+            <a href="assets/pricelist-konveksi.pdf" target="_blank">Pricelist Konveksi</a>
+          </div>
+        </div>
+        <a href="portfolio.html" class="active mobile-link">PORTFOLIO</a>
+        <a href="cara-order.html" class="mobile-link">CARA ORDER</a>
+        <a href="#" id="openCatalog" class="mobile-link">KATALOG</a>
       </nav>
     </div>
   </header>
 
-  <main class="container content-page">
-    <h1>Portofolio</h1>
-    <div class="grid gallery">
-      <figure class="thumb"><img src="assets/thumb1.jpg" alt="Thumb 1"><figcaption>Desain A</figcaption></figure>
-      <figure class="thumb"><img src="assets/thumb2.jpg" alt="Thumb 2"><figcaption>Desain B</figcaption></figure>
-      <figure class="thumb"><img src="assets/thumb3.jpg" alt="Thumb 3"><figcaption>Desain C</figcaption></figure>
-      <figure class="thumb"><img src="assets/thumb4.jpg" alt="Thumb 4"><figcaption>Desain D</figcaption></figure>
+  <!-- 🖼 Main Content (Portfolio) -->
+  <main class="content-page">
+    <h1 class="section-title">PORTFOLIO MAHKOTA</h1>
+    <p style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
+      Berikut adalah beberapa hasil kerja terbaik kami. Kami bangga telah dipercaya oleh berbagai komunitas, instansi, dan perusahaan.
+    </p>
+
+    <!-- Placeholder untuk konten Portfolio -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+      <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #00ffff33;">
+        <h3>Proyek 1: Kaos Komunitas</h3>
+        <p>Sablon plastisol dengan desain kompleks.</p>
+      </div>
+      <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #00ffff33;">
+        <h3>Proyek 2: Kemeja PDL Instansi</h3>
+        <p>Bordir komputer dan bahan berkualitas tinggi.</p>
+      </div>
+      <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #00ffff33;">
+        <h3>Proyek 3: Jaket Varsity Sekolah</h3>
+        <p>Kombinasi sablon dan bordir.</p>
+      </div>
     </div>
+    
   </main>
 
-  <footer class="footer footer-light">
-    <div class="container footer-grid">
+
+  <!-- ⚙️ Footer -->
+  <footer class="footer-light">
+    <div class="footer-grid">
       <div class="footer-col">
-        <img src="assets/logo-mahkota.png" alt="Logo Mahkota" class="footer-logo">
-        <p><strong>Mahkota Custom Apparel & Merchandise</strong></p>
-        <p>Spesialis sablon dan konveksi berkualitas tinggi di Wajo dan sekitarnya.</p>
+        <img src="assets/logo-mahkota.png" class="footer-logo" alt="">
+        <p class="footer-tagline">Solusi Apparel Custom Berkualitas. Cepat, Berpengalaman, dan Bergaransi.</p>
       </div>
       <div class="footer-col">
         <h4>Layanan Kami</h4>
-        <ul>
-          <li>Sablon Manual</li>
-          <li>Sablon DTF</li>
-          <li>Konveksi</li>
-          <li>Merchandise</li>
-        </ul>
+        <ul><li>Sablon Manual</li><li>Sablon DTF</li><li>Konveksi</li></ul>
       </div>
       <div class="footer-col">
         <h4>Kontak</h4>
         <ul class="contact-list">
-          <li>📞 <a href="https://wa.me/6285257778761">0852-5777-8761</a></li>
+          <li>📞 <a href="https://wa.me/6285257778761" target="_blank">0852-5777-8761</a></li>
           <li>📧 info@mahkota.co.id</li>
           <li>📸 <a href="https://instagram.com/mahkota_sablonkaossengkang" target="_blank">@mahkota_sablonkaossengkang</a></li>
         </ul>
@@ -61,10 +105,18 @@
     <div class="footer-bottom">© 2020 – <span id="year"></span> Mahkota Custom Apparel & Merchandise</div>
   </footer>
 
-  <div id="modal" class="modal" aria-hidden="true">
-    <div class="modal-inner">
-      <button id="modalClose" class="modal-close">✕</button>
-      <div id="modalContent" class="pdf-container"></div>
+
+  <!-- 📖 Modal Katalog -->
+  <div id="catalogModal" class="modal">
+    <div class="modal-inner catalog-view">
+      <button id="closeCatalog" class="modal-close">✕</button>
+      <div class="catalog-container">
+        <img id="catalogImage" src="assets/catalog1.jpg" alt="Katalog">
+      </div>
+      <div class="catalog-nav">
+        <button id="prevCatalog">◀</button>
+        <button id="nextCatalog">▶</button>
+      </div>
     </div>
   </div>
 
