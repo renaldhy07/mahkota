@@ -139,39 +139,40 @@ body.dark-neon .neon-text-blink {
   }
 }
 
-/* === Tombol Hamburger === */
+/* Bagian Tombol Hamburger (Sudah benar) */
 .hamburger {
   position: fixed;
   top: 15px;
   right: 15px;
-  z-index: 2000;
-  background: var(--accent-color);
-  color: var(--bg-color);
-  border: none;
-  padding: 10px 15px;
-  font-size: 1.2em;
-  cursor: pointer;
-  border-radius: 8px;
-  display: none; /* Default hidden on desktop */
+  /* ... kode lainnya ... */
 }
 
+/* Bagian Media Query Mobile */
 @media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
+  /* ... kode lainnya ... */
   
   /* Posisikan tombol tema agar tidak bertabrakan dengan hamburger */
   .theme-toggle {
     top: 15px;
     right: 75px; /* Pindah ke kiri hamburger */
-    bottom: auto;
   }
 }
 
-/* MOBILE MENU OVERLAY */
-.main-nav {
-  /* ... definisi yang sudah ada ... */
+/* Bagian Global Tombol Tema (Di akhir file) */
+.theme-toggle {
+  /* ... kode lainnya ... */
+  border-radius: 8px; /* Diubah dari 50% ke 8px */
+  /* ... kode lainnya ... */
 }
+
+/* Bagian Media Query Mobile (Di akhir file) */
+@media (max-width: 768px) {
+  .theme-toggle {
+    right: 75px; /* Pindah ke kiri hamburger */
+    border-radius: 8px; /* Pastikan konsisten di mobile */
+  }
+}
+
 
 /* ... sisa CSS ... */
 

@@ -94,6 +94,61 @@ document.addEventListener('DOMContentLoaded', () => {
   // Panggil applyStoredTheme untuk inisiasi tema yang benar setelah warna neon diatur
   applyStoredTheme();
 
+  // === HERO SLIDER ===
+  const slidesContainer = document.querySelector('.slides');
+  if (slidesContainer) {
+    const slides = slidesContainer.querySelectorAll('.slide');
+    const scrollLeft = document.querySelector('.scroll-left');
+    const scrollRight = document.querySelector('.scroll-right');
+    let currentIndex = 0;
+    let slideInterval;
+
+    const showSlide = (index) => {
+      slides.forEach((s, i) => {
+        s.classList.remove('active');
+        if (i === index) {
+          s.classList.add('active');
+        }
+      });
+      slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+    };
+
+    const nextSlide = () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    };
+
+    const prevSlide = () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
+    };
+
+    const startSlideShow = () => {
+      slideInterval = setInterval(nextSlide, 5000); // Ganti slide setiap 5 detik
+    };
+
+    const stopSlideShow = () => {
+      clearInterval(slideInterval);
+    };
+
+    if (scrollLeft && scrollRight) {
+      scrollLeft.addEventListener('click', () => {
+        stopSlideShow();
+        prevSlide();
+        startSlideShow();
+      });
+
+      scrollRight.addEventListener('click', () => {
+        stopSlideShow();
+        nextSlide();
+        startSlideShow();
+      });
+    }
+
+    showSlide(currentIndex);
+    startSlideShow();
+  }
+
   // === CATALOG MODAL ===
   const catalogModal = document.getElementById('catalogModal');
   const openCatalog = document.getElementById('openCatalog');
