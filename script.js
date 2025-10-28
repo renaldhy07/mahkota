@@ -18,84 +18,44 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       document.body.classList.toggle('light-mode');
       localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-    });
-  }
-
-  // === NEON LAMP ===
-  const neonColorSelect = document.getElementById('neonColor');
-  const colorBtn = document.getElementById('colorBtn');
-  const colorPanel = document.getElementById('colorPanel');
-
-  if (colorBtn && colorPanel) {
-    colorBtn.addEventListener('click', (ev) => {
-      ev.stopPropagation();
-      colorPanel.classList.toggle('hidden');
-    });
-    // Menutup panel saat klik di luar
-    document.addEventListener('click', (ev) => {
-      if (!ev.target.closest('#uiPanel')) {
-        colorPanel.classList.add('hidden');
+      
+      // Rotasi warna neon hanya ketika berganti ke Dark Mode (atau tetap di Dark Mode)
+      if (!document.body.classList.contains('light-mode')) {
+        rotateNeonColor();
       }
     });
   }
 
-  if (neonColorSelect) {
-    const savedNeon = localStorage.getItem('neonColor');
-    if (savedNeon) {
-      neonColorSelect.value = savedNeon;
-      applyNeon(savedNeon);
-    }
+  // === NEON COLOR ROTATION ===
+  const NEON_COLORS = [
+    '#FFFF00', // Yellow
+    '#FF69B4', // Pink
+    '#8A2BE2', // Purple
+    '#00FFFF', // Cyan
+    '#FFA500', // Orange
+    '#50C878'  // Emerald
+  ];
+  let currentColorIndex = 0;
 
-    neonColorSelect.addEventListener('change', (e) => {
-      const color = e.target.value;
-      localStorage.setItem('neonColor', color);
-      applyNeon(color);
-      colorPanel.classList.add('hidden');
-    });
+  function applyNeonColor(color) {
+    document.body.style.setProperty('--neon-bg-color', color);
+    localStorage.setItem('neonColor', color);
   }
 
-  function applyNeon(color) {
-    if (color === 'none') {
-      document.body.classList.remove('neon-bg');
-      document.body.style.setProperty('--neon-bg-color', '#00FFFF'); // Default Cyan
-    } else {
-      document.body.classList.add('neon-bg');
-      document.body.style.setProperty('--neon-bg-color', color);
-    }
+  function rotateNeonColor() {
+    currentColorIndex = (currentColorIndex + 1) % NEON_COLORS.length;
+    const newColor = NEON_COLORS[currentColorIndex];
+    applyNeonColor(newColor);
   }
 
-  // === HERO SLIDER ===
-  const slidesWrap = document.querySelector('.slides');
-  const slideEls = document.querySelectorAll('.slide');
-  const leftBtn = document.querySelector('.scroll-left');
-  const rightBtn = document.querySelector('.scroll-right');
-  let currentSlide = 0;
-  let autoSlideInterval = null;
-
-  function showSlide(i) {
-    if (!slidesWrap || slideEls.length === 0) return;
-    currentSlide = (i + slideEls.length) % slideEls.length;
-    slidesWrap.style.transform = `translateX(-${currentSlide * 100}%)`;
-    slideEls.forEach((s, idx) => s.classList.toggle('active', idx === currentSlide));
+  // Ambil warna neon yang tersimpan atau gunakan default (Yellow)
+  const storedNeonColor = localStorage.getItem('neonColor');
+  if (storedNeonColor && NEON_COLORS.includes(storedNeonColor)) {
+    currentColorIndex = NEON_COLORS.indexOf(storedNeonColor);
+    applyNeonColor(storedNeonColor);
+  } else {
+    applyNeonColor(NEON_COLORS[0]); // Default: Yellow
   }
-
-  function startAutoSlide() {
-    stopAutoSlide();
-    autoSlideInterval = setInterval(() => showSlide(currentSlide + 1), 5000);
-  }
-
-  function stopAutoSlide() {
-    if (autoSlideInterval) clearInterval(autoSlideInterval);
-  }
-
-  if (slidesWrap && slideEls.length > 0) {
-    showSlide(0);
-    startAutoSlide();
-    slidesWrap.addEventListener('mouseenter', stopAutoSlide);
-    slidesWrap.addEventListener('mouseleave', startAutoSlide);
-  }
-  if (leftBtn) leftBtn.addEventListener('click', () => showSlide(currentSlide - 1));
-  if (rightBtn) rightBtn.addEventListener('click', () => showSlide(currentSlide + 1));
 
   // === CATALOG MODAL ===
   const catalogModal = document.getElementById('catalogModal');
