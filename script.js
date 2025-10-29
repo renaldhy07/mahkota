@@ -111,14 +111,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // === NEON COLOR ROTATION ===
+    // 20 Warna Neon Pastel/Dreamwave
     const NEON_COLORS = [
-        '#FFFF00', // Yellow
-        '#FF69B4', // Pink
-        '#8A2BE2', // Purple
-        '#00FFFF', // Cyan
-        '#FFA500', // Orange
-        '#50C878'  // Emerald
+        '#FFB6C1', // 1. Cotton Candy (Light Pink)
+        '#FF7F50', // 2. Sunset Dream (Coral)
+        '#E6E6FA', // 3. Lavender Sky (Lavender)
+        '#ADD8E6', // 4. Ocean Breeze (Light Blue)
+        '#98FB98', // 5. Minty Glow (Pale Green)
+        '#FFDAB9', // 6. Soft Sunrise (Peach)
+        '#FF6347', // 7. Coral Mist (Tomato/Bright Coral)
+        '#8A2BE2', // 8. Blueberry Light (Blue Violet)
+        '#FFFACD', // 9. Lemon Cloud (Lemon Chiffon)
+        '#FFDAB9', // 10. Peachy Aura (Peach Puff)
+        '#9370DB', // 11. Dreamwave (Medium Purple)
+        '#FFC0CB', // 12. Neon Pastel (Pink)
+        '#87CEFA', // 13. Sky Blossom (Light Sky Blue)
+        '#FFD700', // 14. Aurora Glow (Gold)
+        '#EE82EE', // 15. Violet Mist (Violet)
+        '#BFFF00', // 16. Citrus Mint (Chartreuse)
+        '#F0F8FF', // 17. Frosted Peach (Alice Blue - use a warmer color)
+        '#00CED1', // 18. Tropical Glow (Dark Turquoise)
+        '#F08080', // 19. Blush Horizon (Light Coral)
+        '#4682B4'  // 20. Moonlight Neon (Steel Blue)
     ];
+    // Ganti warna Frosted Peach agar lebih hangat
+    NEON_COLORS[16] = '#FFE4B5'; // Moccasin (Frosted Peach)
+
     let currentColorIndex = 0;
 
     function applyNeonColor(color) {
@@ -132,13 +150,13 @@ document.addEventListener('DOMContentLoaded', () => {
         applyNeonColor(newColor);
     }
 
-    // Ambil warna neon yang tersimpan atau gunakan default (Yellow)
+    // Ambil warna neon yang tersimpan atau gunakan default (Cotton Candy)
     const storedNeonColor = localStorage.getItem('neonColor');
     if (storedNeonColor && NEON_COLORS.includes(storedNeonColor)) {
         currentColorIndex = NEON_COLORS.indexOf(storedNeonColor);
         applyNeonColor(storedNeonColor);
     } else {
-        applyNeonColor(NEON_COLORS[0]); // Default: Yellow
+        applyNeonColor(NEON_COLORS[0]); // Default: Cotton Candy
     }
     
     // Panggil applyStoredTheme untuk inisiasi tema yang benar setelah warna neon diatur
