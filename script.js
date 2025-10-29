@@ -2,8 +2,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- LOGIKA NEON SOUND ---
-    const neonSound = document.getElementById('neonSound');
-    const neonElements = document.querySelectorAll('.neon-blink');
+    // Tambahkan elemen audio ke body untuk suara statis
+    const neonSoundAudio = document.createElement('audio');
+    neonSoundAudio.id = 'neonStaticSound';
+    neonSoundAudio.loop = true;
+    // Catatan: Karena tidak ada file audio yang disediakan, kita asumsikan ada file 'assets/neon_static.mp3'
+    // Anda perlu menyediakan file audio ini di folder 'assets'
+    neonSoundAudio.src = 'assets/neon_static.mp3'; 
+    neonSoundAudio.volume = 0.5; // Atur volume agar tidak terlalu keras
+    document.body.appendChild(neonSoundAudio);
+
+    const neonSound = document.getElementById('neonStaticSound');
 
     // Fungsi untuk memulai dan menghentikan suara
     const playNeonSound = () => {
@@ -20,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Memastikan suara diputar setelah interaksi pertama (misalnya, klik tema)
+    // Kita tambahkan listener ke body, dan hapus setelah diputar
     document.body.addEventListener('click', playNeonSound, { once: true });
 
 
@@ -52,6 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (storedMode === 'dark-neutral') themeToggle.textContent = '🌙';
             else themeToggle.textContent = '☀️';
         }
+        
+        // Kontrol suara neon
+        if (storedMode === 'dark-neon') {
+            // Coba putar suara saat mode neon diaktifkan
+            playNeonSound();
+        } else {
+            // Hentikan suara saat mode non-neon diaktifkan
+            if (neonSound && !neonSound.paused) {
+                neonSound.pause();
+            }
+        }
     };
 
     if (themeToggle) {
@@ -75,6 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Rotasi warna neon hanya jika beralih ke Dark Neon
             if (newMode === 'dark-neon') {
                 rotateNeonColor();
+                playNeonSound(); // Putar suara saat beralih ke mode neon
+            } else {
+                if (neonSound && !neonSound.paused) {
+                    neonSound.pause(); // Hentikan suara saat beralih dari mode neon
+                }
             }
             
             // Pastikan warna neon default diatur jika beralih ke mode non-neon
