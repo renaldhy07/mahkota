@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title class="neon-text-blink">MAHKOTA KONVEKSI & PERCETAKAN — Cara Order</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
@@ -17,20 +17,29 @@
   <button id="hamburger" class="hamburger" aria-label="Toggle navigation">☰</button>
 
 
-
-  <!-- 🧢 Header -->
+  <!-- 🧢 Header (Disamakan dengan index.html) -->
   <header class="site-header">
     <div class="header-container">
       <a class="brand" href="index.html">
         <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota">
-        <span class="brand-text neon-text-blink">MAHKOTA KONVEKSI & PERCETAKAN</span>
+        <!-- Teks logo desktop (vertikal 3 baris) -->
+        <div class="brand-text-vertical neon-text-blink">
+          <span class="line-1">MAHKOTA</span>
+          <span class="line-2">KONVEKSI &</span>
+          <span class="line-3">PERCETAKAN</span>
+        </div>
       </a>
 
       <nav class="main-nav" id="nav-links">
         <div class="mobile-menu-header">
-          <a class="brand" href="index.html">
+          <a class="brand-mobile-logo" href="index.html">
             <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota">
-            <span class="brand-text neon-text-blink">MAHKOTA KONVEKSI & PERCETAKAN</span>
+            <!-- Teks logo vertikal untuk mobile -->
+            <div class="brand-text-vertical neon-text-blink">
+              <span class="line-1">MAHKOTA</span>
+              <span class="line-2">KONVEKSI &</span>
+              <span class="line-3">PERCETAKAN</span>
+            </div>
           </a>
           <button id="closeMenu" class="close-btn">✕</button>
         </div>
@@ -43,31 +52,29 @@
             <a href="assets/pricelist-konveksi.pdf" target="_blank">Pricelist Konveksi</a>
           </div>
         </div>
-        <a href="portfolio.html" class="mobile-link neon-text-blink">PORTFOLIO</a>
+        <!-- Perbaikan: Menggunakan portofolio.html -->
+        <a href="portofolio.html" class="mobile-link neon-text-blink">PORTOFOLIO</a>
         <a href="cara-order.html" class="active mobile-link neon-text-blink">CARA ORDER</a>
         <a href="#" id="openCatalog" class="mobile-link neon-text-blink">KATALOG</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="content-page">
-      <div class="container">
-        <h1 class="section-title neon-text-blink">CARA ORDER</h1>
-        <ol class="steps">
-          <li>Pilih produk & spesifikasi (ukuran, warna, jumlah).</li>
-          <li>Kirim file desain (PNG/JPG/PDF) ke WhatsApp kami.</li>
-          <li>Kami buatkan proof & estimasi harga.</li>
-          <li>Konfirmasi & bayar DP; produksi akan berlangsung sesuai timeline.</li>
-          <li>Pengiriman dilakukan setelah QC dan konfirmasi.</li>
-        </ol>
+  <main class="content-page">
+    <div class="container text-content">
+      <h1 class="section-title neon-text-blink">CARA ORDER</h1>
+      <ol class="steps">
+        <li>Pilih produk & spesifikasi (ukuran, warna, jumlah).</li>
+        <li>Kirim file desain (PNG/JPG/PDF) ke WhatsApp kami.</li>
+        <li>Kami buatkan proof & estimasi harga.</li>
+        <li>Konfirmasi & bayar DP; produksi akan berlangsung sesuai timeline.</li>
+        <li>Pengiriman dilakukan setelah QC dan konfirmasi.</li>
+      </ol>
   
-        <div class="order-cta">
-          <a class="btn primary" href="https://wa.me/6285257778761" target="_blank"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
-
-        </div>
+      <div class="order-cta">
+        <a class="btn primary" href="https://wa.me/6285257778761" target="_blank"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
       </div>
-    </section>
+    </div>
   </main>
 
   <!-- 🔝 Topbar (Hanya untuk Desktop) -->

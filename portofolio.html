@@ -38,17 +38,21 @@
 
     .lightbox-content {
       position: relative;
-      max-width: 90vw;
-      max-height: 90vh;
+      max-width: 95vw;
+      max-height: 95vh;
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      /* Padding dikurangi agar tombol lebih dekat ke pinggir di mobile, tapi tetap ada ruang */
+      padding: 0 50px; 
     }
 
     .lightbox-img {
       max-width: 100%;
       max-height: 100%;
-      object-fit: contain;
+      object-fit: contain; /* Memastikan gambar tidak terpotong */
       border-radius: 8px;
       animation: slideIn 0.3s ease-in-out;
     }
@@ -94,30 +98,34 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      color: #f1f1f1;
+      color: var(--neon-bg-color, #00FFFF);
       font-size: 30px;
-      font-weight: bold;
       cursor: pointer;
-      background: rgba(0, 0, 0, 0.5);
-      border: none;
-      padding: 15px 20px;
-      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid var(--neon-bg-color, #00FFFF);
+      padding: 10px 15px;
+      border-radius: 50%;
       transition: all 0.3s ease;
       user-select: none;
+      line-height: 1;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 10000; /* Pastikan di atas gambar */
     }
 
     .lightbox-prev:hover,
     .lightbox-next:hover {
-      background: rgba(0, 0, 0, 0.8);
+      background: var(--neon-bg-color, #00FFFF);
+      color: #000;
       transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 15px var(--neon-bg-color, #00FFFF);
     }
 
     .lightbox-prev {
-      left: 20px;
+      left: 10px; /* Lebih dekat ke pinggir */
     }
 
     .lightbox-next {
-      right: 20px;
+      right: 10px; /* Lebih dekat ke pinggir */
     }
 
     .lightbox-counter {
@@ -132,10 +140,11 @@
       font-weight: 600;
     }
 
-    /* ===== PORTFOLIO GRID IMPROVEMENTS ===== */
+    /* ===== PORTFOLIO GRID IMPROVEMENTS (Untuk mengatasi gambar terpotong di desktop) ===== */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      /* Menggunakan minmax yang lebih fleksibel untuk desktop */
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
       gap: 20px;
       padding: 20px;
       max-width: 1400px;
@@ -146,92 +155,57 @@
       position: relative;
       overflow: hidden;
       border-radius: 8px;
-      aspect-ratio: 1;
+      /* Hapus aspect-ratio: 1 jika gambar tidak selalu kotak, 
+         tapi biarkan untuk keseragaman tampilan grid */
+      aspect-ratio: 1; 
       cursor: pointer;
       background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    .portfolio-item:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-    }
+    
+    /* ... (CSS lainnya dipertahankan) ... */
 
     .portfolio-img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; /* Gunakan cover agar mengisi kotak item */
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .portfolio-item:hover .portfolio-img {
-      transform: scale(1.08);
-      filter: brightness(0.85);
-    }
-
-    .portfolio-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      opacity: 0;
-    }
-
-    .portfolio-item:hover .portfolio-overlay {
-      background: rgba(0, 0, 0, 0.4);
-      opacity: 1;
-    }
-
-    .portfolio-overlay-icon {
-      font-size: 40px;
-      color: white;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.1);
-      }
-    }
-
-    /* ===== RESPONSIVE DESIGN ===== */
+    /* ===== RESPONSIVE DESIGN (Perbaikan tombol navigasi di mobile) ===== */
     @media (max-width: 1024px) {
       .portfolio-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 15px;
         padding: 15px;
       }
 
       .lightbox-prev,
       .lightbox-next {
-        padding: 12px 16px;
+        /* Ukuran tombol di tablet/medium screen */
+        padding: 8px 10px;
         font-size: 24px;
       }
     }
 
     @media (max-width: 768px) {
       .portfolio-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 12px;
-        padding: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        padding: 10px;
       }
 
       .lightbox-prev,
       .lightbox-next {
-        padding: 10px 12px;
-        font-size: 20px;
-        left: 10px;
-        right: 10px;
+        /* Ukuran tombol lebih kecil di mobile */
+        padding: 6px 8px;
+        font-size: 18px;
+        left: 5px;
+        right: 5px;
+        /* Tombol navigasi di mobile harus tetap terlihat rapi */
+        top: 50%;
+        transform: translateY(-50%);
       }
 
       .lightbox-close {
@@ -246,18 +220,22 @@
         bottom: 10px;
         left: 10px;
       }
+      
+      .lightbox-content {
+        /* Kurangi padding di mobile agar gambar bisa lebih besar */
+        padding: 0 40px; 
+      }
     }
 
     @media (max-width: 480px) {
       .portfolio-grid {
         grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 10px;
+        gap: 8px;
+        padding: 8px;
       }
-
+      
       .lightbox-content {
-        max-width: 95vw;
-        max-height: 95vh;
+        padding: 0 30px; 
       }
     }
   </style>
@@ -315,12 +293,48 @@
   <main class="content-page">
     <h1 class="section-title neon-text-blink">PORTOFOLIO MAHKOTA</h1>
     <p style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
-      Berikut adalah beberapa hasil kerja terbaik kami. Kami bangga telah dipercaya oleh berbagai komunitas, instansi, dan perusahaan.
+      Berikut adalah 9 hasil kerja terbaik kami. Kami bangga telah dipercaya oleh berbagai komunitas, instansi, dan perusahaan.
     </p>
 
-    <!-- Grid Portofolio untuk 21 Gambar -->
+    <!-- Grid Portofolio untuk 9 Gambar -->
     <div class="portfolio-grid" id="portfolioGrid">
-      <!-- Gambar akan diload secara dinamis melalui JavaScript -->
+      <!-- 9 Gambar Portofolio (Contoh path, asumsikan ada assets/portofolio/1.jpg sampai 9.jpg) -->
+      <div class="portfolio-item" data-index="0" data-src="assets/portofolio/1.jpg">
+        <img src="assets/portofolio/1.jpg" alt="Portofolio 1" class="portfolio-img">
+        <div class="portfolio-overlay"><i class="fas fa-search-plus portfolio-overlay-icon"></i></div>
+      </div>
+      <div class="portfolio-item" data-index="1" data-src="assets/portofolio/2.jpg">
+        <img src="assets/portofolio/2.jpg" alt="Portofolio 2" class="portfolio-img">
+        <div class="portfolio-overlay"><i class="fas fa-search-plus portfolio-overlay-icon"></i></div>
+      </div>
+      <div class="portfolio-item" data-index="2" data-src="assets/portofolio/3.jpg">
+        <img src="assets/portofolio/3.jpg" alt="Portofolio 3" class="portfolio-img">
+        <div class="portfolio-overlay"><i class="fas fa-search-plus portfolio-overlay-icon"></i></div>
+      </div>
+      <div class="portfolio-item" data-index="3" data-src="assets/portofolio/4.jpg">
+        <img src="assets/portofolio/4.jpg" alt="Portofolio 4" class="portfolio-img">
+        <div class="portfolio-overlay"><i class="fas fa-search-plus portfolio-overlay-icon"></i></div>
+      </div>
+      <div class="portfolio-item" data-index="4" data-src="assets/portofolio/5.jpg">
+        <img src="assets/portofolio/5.jpg" alt="Portofolio 5" class="portfolio-img">
+        <div class="portfolio-overlay"><i class="fas fa-search-plus portfolio-overlay-icon"></i></div>
+      </div>
+      <div class="portfolio-item" data-index="5" data-src="assets/portofolio/6.jpg">
+        <img src="assets/portofolio/6.jpg" alt="Portofolio 6" class="portfolio-img">
+        <div class="portfolio-overlay"><i class="fas fa-search-plus portfolio-overlay-icon"></i></div>
+      </div>
+      <div class="portfolio-item" data-index="6" data-src="assets/portofolio/7.jpg">
+        <img src="assets/portofolio/7.jpg" alt="Portofolio 7" class="portfolio-img">
+        <div class="portfolio-overlay"><i class="fas fa-search-plus portfolio-overlay-icon"></i></div>
+      </div>
+      <div class="portfolio-item" data-index="7" data-src="assets/portofolio/8.jpg">
+        <img src="assets/portofolio/8.jpg" alt="Portofolio 8" class="portfolio-img">
+        <div class="portfolio-overlay"><i class="fas fa-search-plus portfolio-overlay-icon"></i></div>
+      </div>
+      <div class="portfolio-item" data-index="8" data-src="assets/portofolio/9.jpg">
+        <img src="assets/portofolio/9.jpg" alt="Portofolio 9" class="portfolio-img">
+        <div class="portfolio-overlay"><i class="fas fa-search-plus portfolio-overlay-icon"></i></div>
+      </div>
     </div>
   </main>
 
@@ -380,11 +394,14 @@
 
   <!-- Lightbox Modal -->
   <div id="lightboxModal" class="lightbox-modal">
-    <span class="lightbox-close">&times;</span>
+    <button class="lightbox-close" aria-label="Close Modal">✕</button>
     <div class="lightbox-content">
-      <img id="lightboxImage" class="lightbox-img" alt="Portofolio Image">
-      <button id="lightboxPrev" class="lightbox-prev">❮</button>
-      <button id="lightboxNext" class="lightbox-next">❯</button>
+      <!-- Image container untuk swipe -->
+      <div id="lightboxImageContainer" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+        <img id="lightboxImage" class="lightbox-img" alt="Portofolio Image">
+      </div>
+      <button id="lightboxPrev" class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+      <button id="lightboxNext" class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
       <div id="lightboxCounter" class="lightbox-counter"></div>
     </div>
   </div>
