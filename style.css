@@ -317,18 +317,26 @@ body.dark-neon .neon-text-blink {
   height: auto;
 }
 
-.brand-text {
+.brand-text-vertical {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
   font-family: var(--font-title, 'Inter', sans-serif);
-  font-size: 1.2em; /* Ukuran font lebih kecil agar tidak menumpuk */
   font-weight: 800;
-  color: var(--accent-color); /* Menggunakan accent-color */
-  letter-spacing: 1px;
+  font-size: 1.2em; /* Ukuran default untuk desktop/mobile header */
   text-transform: uppercase;
-  white-space: nowrap; /* Mencegah teks melipat */
+}
+
+.brand-text-vertical .line-1 {
+  font-size: 1em;
+}
+.brand-text-vertical .line-2,
+.brand-text-vertical .line-3 {
+  font-size: 0.8em;
 }
 
 @media (max-width: 768px) {
-  .brand-text {
+  .brand-text-vertical {
     font-size: 1.0em; /* Lebih kecil lagi di mobile */
   }
 }
@@ -810,11 +818,7 @@ body.light-neutral .alasan-btn:hover {
   .header-container .logo {
     width: 40px;
   }
-  .header-container .brand-text {
-  font-family: var(--font-title, 'Inter', sans-serif);
-    font-size: 1.2em;
-    line-height: 1.2;
-  }
+  /* Dihapus karena sudah diganti dengan .brand-text-vertical */
 
   /* Tampilan menu sidebar saat aktif */
   .main-nav.active {
@@ -859,12 +863,7 @@ body.light-neutral .alasan-btn:hover {
   .mobile-menu-header .logo {
     width: 40px;
   }
-.mobile-menu-header .brand-text {
-  font-family: var(--font-title, 'Inter', sans-serif);
-  /* Warna teks logo di mobile dibuat lebih kontras */
-  color: var(--accent-color); /* Menggunakan accent-color */
-  font-size: 1.2em;
-}
+/* Dihapus karena sudah diganti dengan .brand-text-vertical */
 
   /* Tombol Tutup - Dibuat seperti kotak Tapada */
   .close-btn {

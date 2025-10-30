@@ -275,7 +275,11 @@
     <div class="header-container">
       <a class="brand" href="index.html">
         <img src="assets/logo-mahkota.png" class="logo" alt="Mahkota">
-        <span class="brand-text neon-text-blink">MAHKOTA KONVEKSI & PERCETAKAN</span>
+        <div class="brand-text-vertical neon-text-blink">
+          <span class="line-1">MAHKOTA</span>
+          <span class="line-2">KONVEKSI &</span>
+          <span class="line-3">PERCETAKAN</span>
+        </div>
       </a>
 
       <nav class="main-nav" id="nav-links">
@@ -352,6 +356,7 @@
         <h4 class="neon-text-blink">Kontak</h4>
         <ul class="contact-list">
           <li>📞 <a href="https://wa.me/6285257778761" target="_blank">+6285257778761</a></li>
+          
           <li>📸 <a href="https://instagram.com/mahkota_sablonkaossengkang" target="_blank">@mahkota_sablonkaossengkang</a></li>
         </ul>
       </div>
@@ -373,120 +378,17 @@
     </div>
   </div>
 
-  <!-- 🖼 Lightbox Modal -->
+  <!-- Lightbox Modal -->
   <div id="lightboxModal" class="lightbox-modal">
+    <span class="lightbox-close">&times;</span>
     <div class="lightbox-content">
-      <button class="lightbox-close" id="lightboxClose">&times;</button>
-      <img id="lightboxImg" src="" alt="Portofolio" class="lightbox-img">
-      <button class="lightbox-prev" id="lightboxPrev">&#10094;</button>
-      <button class="lightbox-next" id="lightboxNext">&#10095;</button>
-      <div class="lightbox-counter">
-        <span id="currentImage">1</span> / <span id="totalImages">21</span>
-      </div>
+      <img id="lightboxImage" class="lightbox-img" alt="Portofolio Image">
+      <button id="lightboxPrev" class="lightbox-prev">❮</button>
+      <button id="lightboxNext" class="lightbox-next">❯</button>
+      <div id="lightboxCounter" class="lightbox-counter"></div>
     </div>
   </div>
 
   <script src="script.js"></script>
-  <script>
-    // ===== LIGHTBOX FUNCTIONALITY =====
-    const lightboxModal = document.getElementById('lightboxModal');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.getElementById('lightboxClose');
-    const lightboxPrev = document.getElementById('lightboxPrev');
-    const lightboxNext = document.getElementById('lightboxNext');
-    const currentImageSpan = document.getElementById('currentImage');
-    const totalImagesSpan = document.getElementById('totalImages');
-    const portfolioGrid = document.getElementById('portfolioGrid');
-
-    let currentImageIndex = 0;
-    let portfolioImages = [];
-
-    // Load portfolio images
-    function loadPortfolioImages() {
-      // Generate 21 portfolio items dengan path folder "portofolio" (bukan "portfolio")
-      for (let i = 1; i <= 21; i++) {
-        portfolioImages.push({
-          id: i,
-          src: `assets/portofolio/${i}.jpg`,
-          alt: `Hasil Kerja ${i}`
-        });
-      }
-
-      // Render grid
-      portfolioGrid.innerHTML = portfolioImages.map((img, index) => `
-        <div class="portfolio-item" data-index="${index}">
-          <img src="${img.src}" alt="${img.alt}" class="portfolio-img" loading="lazy">
-          <div class="portfolio-overlay">
-            <div class="portfolio-overlay-icon">🔍</div>
-          </div>
-        </div>
-      `).join('');
-
-      // Add click listeners
-      document.querySelectorAll('.portfolio-item').forEach((item, index) => {
-        item.addEventListener('click', () => openLightbox(index));
-      });
-
-      totalImagesSpan.textContent = portfolioImages.length;
-    }
-
-    // Open lightbox
-    function openLightbox(index) {
-      currentImageIndex = index;
-      lightboxImg.src = portfolioImages[index].src;
-      lightboxImg.alt = portfolioImages[index].alt;
-      lightboxModal.classList.add('active');
-      currentImageSpan.textContent = index + 1;
-      document.body.style.overflow = 'hidden';
-    }
-
-    // Close lightbox
-    function closeLightbox() {
-      lightboxModal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Navigate to previous image
-    function previousImage() {
-      if (currentImageIndex > 0) {
-        openLightbox(currentImageIndex - 1);
-      } else {
-        openLightbox(portfolioImages.length - 1);
-      }
-    }
-
-    // Navigate to next image
-    function nextImage() {
-      if (currentImageIndex < portfolioImages.length - 1) {
-        openLightbox(currentImageIndex + 1);
-      } else {
-        openLightbox(0);
-      }
-    }
-
-    // Event listeners
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightboxPrev.addEventListener('click', previousImage);
-    lightboxNext.addEventListener('click', nextImage);
-
-    // Close on background click
-    lightboxModal.addEventListener('click', (e) => {
-      if (e.target === lightboxModal) {
-        closeLightbox();
-      }
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (lightboxModal.classList.contains('active')) {
-        if (e.key === 'ArrowLeft') previousImage();
-        if (e.key === 'ArrowRight') nextImage();
-        if (e.key === 'Escape') closeLightbox();
-      }
-    });
-
-    // Initialize
-    loadPortfolioImages();
-  </script>
 </body>
 </html>

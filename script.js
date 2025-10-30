@@ -316,3 +316,120 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 }); // DOMContentLoaded end
+
+
+// ===== LIGHTBOX FUNCTIONALITY (Portofolio) =====
+document.addEventListener('DOMContentLoaded', () => {
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImage');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const currentImageSpan = document.getElementById('currentImage');
+    const totalImagesSpan = document.getElementById('totalImages');
+    const portfolioGrid = document.getElementById('portfolioGrid');
+
+    let currentImageIndex = 0;
+    let portfolioImages = [];
+
+    // Load portfolio images
+    function loadPortfolioImages() {
+      // Generate 21 portfolio items dengan path folder "portofolio" (bukan "portfolio")
+      for (let i = 1; i <= 21; i++) {
+        portfolioImages.push({
+          id: i,
+          src: `assets/portofolio/${i}.jpg`,
+          alt: `Hasil Kerja ${i}`
+        });
+      }
+
+      // Hanya render grid jika elemen portfolioGrid ada (hanya di portofolio.html)
+      if (portfolioGrid) {
+        portfolioGrid.innerHTML = portfolioImages.map((img, index) => `
+          <div class="portfolio-item" data-index="${index}">
+            <img src="${img.src}" alt="${img.alt}" class="portfolio-img" loading="lazy">
+            <div class="portfolio-overlay">
+              <div class="portfolio-overlay-icon">🔍</div>
+            </div>
+          </div>
+        `).join('');
+
+        // Add click listeners
+        document.querySelectorAll('.portfolio-item').forEach((item, index) => {
+          item.addEventListener('click', () => openLightbox(index));
+        });
+
+        if (totalImagesSpan) {
+            totalImagesSpan.textContent = portfolioImages.length;
+        }
+      }
+    }
+
+    // Open lightbox
+    function openLightbox(index) {
+        if (!lightboxModal) return;
+        currentImageIndex = index;
+        lightboxImg.src = portfolioImages[index].src;
+        lightboxImg.alt = portfolioImages[index].alt;
+        lightboxModal.classList.add('active');
+        if (currentImageSpan) {
+            currentImageSpan.textContent = index + 1;
+        }
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close lightbox
+    function closeLightbox() {
+        if (!lightboxModal) return;
+        lightboxModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Navigate to previous image
+    function previousImage() {
+        if (!portfolioImages.length) return;
+        if (currentImageIndex > 0) {
+            openLightbox(currentImageIndex - 1);
+        } else {
+            openLightbox(portfolioImages.length - 1);
+        }
+    }
+
+    // Navigate to next image
+    function nextImage() {
+        if (!portfolioImages.length) return;
+        if (currentImageIndex < portfolioImages.length - 1) {
+            openLightbox(currentImageIndex + 1);
+        } else {
+            openLightbox(0);
+        }
+    }
+
+    // Event listeners
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxPrev) lightboxPrev.addEventListener('click', previousImage);
+    if (lightboxNext) lightboxNext.addEventListener('click', nextImage);
+
+    // Close on background click
+    if (lightboxModal) {
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                closeLightbox();
+            }
+        });
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (lightboxModal && lightboxModal.classList.contains('active')) {
+            if (e.key === 'ArrowLeft') previousImage();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'Escape') closeLightbox();
+        }
+    });
+
+    // Initialize
+    if (portfolioGrid) {
+        loadPortfolioImages();
+    }
+});
