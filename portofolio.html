@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title class="neon-text-blink">MAHKOTA KONVEKSI & PERCETAKAN — Portofolio</title>
+  <title class="neon-text-blink">MAHKOTA KONVEKSI & SABLON — Portofolio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -36,18 +36,18 @@
       }
     }
 
-    .lightbox-content {
-      position: relative;
-      max-width: 95vw;
-      max-height: 95vh;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      /* Padding disesuaikan agar tombol navigasi di pinggir tidak menabrak gambar dan terlihat rapi */
-      padding: 0 50px; 
-    }
+      .lightbox-content {
+        position: relative;
+        max-width: 95vw;
+        max-height: 95vh;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Padding disesuaikan agar tombol navigasi di pinggir tidak menabrak gambar dan terlihat rapi */
+        padding: 0 50px; 
+      }
 
     .lightbox-img {
       max-width: 100%;
@@ -68,64 +68,71 @@
       }
     }
 
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: #f1f1f1;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 0;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-    }
+      .lightbox-close {
+        position: absolute;
+        top: 10px; /* Posisikan sedikit lebih dekat ke atas */
+        right: 10px; /* Posisikan sedikit lebih dekat ke kanan */
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.5); /* Tambahkan background semi-transparan */
+        border: none;
+        padding: 10px; /* Tambahkan padding untuk memperbesar area klik */
+        width: 60px; /* Perbesar area klik */
+        height: 60px; /* Perbesar area klik */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        z-index: 10001; /* Pastikan selalu di atas */
+      }
 
     .lightbox-close:hover {
       background-color: rgba(255, 255, 255, 0.2);
       transform: scale(1.1);
     }
 
-    .lightbox-prev,
-    .lightbox-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--neon-bg-color, #00FFFF);
-      font-size: 30px;
-      cursor: pointer;
-      background: rgba(0, 0, 0, 0.6);
-      border: 2px solid var(--neon-bg-color, #00FFFF);
-      padding: 10px 15px;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      user-select: none;
-      line-height: 1;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      z-index: 10000;
-    }
+      .lightbox-prev,
+      .lightbox-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #fff; /* Warna ikon putih */
+        font-size: 30px;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.6); /* Latar belakang semi-transparan */
+        border: none; /* Hapus border */
+        padding: 10px 15px; /* Padding yang lebih kecil */
+        width: 50px; /* Lebar tombol bulat */
+        height: 50px; /* Tinggi tombol bulat */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        user-select: none;
+        line-height: 1;
+        z-index: 10000;
+        border-radius: 50%; /* Kembali ke bentuk bulat */
+      }
+      
+      /* Hapus semua media query untuk tombol navigasi agar gaya desktop diterapkan di semua ukuran */
 
     .lightbox-prev:hover,
     .lightbox-next:hover {
-      background: var(--neon-bg-color, #00FFFF);
-      color: #000;
-      transform: translateY(-50%) scale(1.1);
-      box-shadow: 0 0 15px var(--neon-bg-color, #00FFFF);
+      background: rgba(0, 0, 0, 0.8); /* Sedikit lebih gelap saat hover */
+      color: #fff;
+      transform: translateY(-50%) scale(1.1); /* Efek hover yang lebih jelas */
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Tambahkan sedikit shadow */
     }
 
     .lightbox-prev {
-      left: 10px; /* Lebih dekat ke pinggir */
+      left: 10px; /* Jarak dari pinggir */
     }
 
     .lightbox-next {
-      right: 10px; /* Lebih dekat ke pinggir */
+      right: 10px; /* Jarak dari pinggir */
     }
 
     .lightbox-counter {
@@ -214,21 +221,6 @@
     }
 
     /* ===== RESPONSIVE DESIGN (Perbaikan tombol navigasi di mobile) ===== */
-    @media (max-width: 1024px) {
-      .portfolio-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-        padding: 15px;
-      }
-
-      .lightbox-prev,
-      .lightbox-next {
-        /* Ukuran tombol di tablet/medium screen */
-        padding: 8px 10px;
-        font-size: 24px;
-      }
-    }
-
     @media (max-width: 768px) {
       .portfolio-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -236,22 +228,15 @@
         padding: 10px;
       }
 
-      .lightbox-prev,
-      .lightbox-next {
-        /* Ukuran tombol lebih kecil di mobile */
-        padding: 6px 8px;
-        font-size: 18px;
-        left: 5px;
-        right: 5px;
-        /* Tombol navigasi di mobile harus tetap terlihat rapi */
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
       .lightbox-close {
+        /* Gaya mobile: pastikan ukuran dan posisi konsisten */
         top: 10px;
         right: 10px;
         font-size: 30px;
+        width: 50px; /* Sedikit lebih kecil di mobile */
+        height: 50px;
+        padding: 5px;
+        z-index: 10001;
       }
 
       .lightbox-counter {
@@ -263,7 +248,24 @@
       
       .lightbox-content {
         /* Kurangi padding di mobile agar gambar bisa lebih besar */
-        padding: 0 40px; 
+        padding: 0 10px; 
+      }
+      
+      .lightbox-prev,
+      .lightbox-next {
+        /* Sesuaikan ukuran tombol di mobile agar tidak terlalu besar */
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        padding: 5px;
+      }
+      
+      .lightbox-prev {
+        left: 5px;
+      }
+      
+      .lightbox-next {
+        right: 5px;
       }
     }
 
@@ -275,7 +277,7 @@
       }
       
       .lightbox-content {
-        padding: 0 30px; 
+        padding: 0 5px; 
       }
     }
   </style>
@@ -296,7 +298,7 @@
         <div class="brand-text-vertical neon-text-blink">
           <span class="line-1">MAHKOTA</span>
           <span class="line-2">KONVEKSI &</span>
-          <span class="line-3">PERCETAKAN</span>
+          <span class="line-3">SABLON</span>
         </div>
       </a>
 
@@ -308,7 +310,7 @@
             <div class="brand-text-vertical neon-text-blink">
               <span class="line-1">MAHKOTA</span>
               <span class="line-2">KONVEKSI &</span>
-              <span class="line-3">PERCETAKAN</span>
+              <span class="line-3">SABLON</span>
             </div>
           </a>
           <button id="closeMenu" class="close-btn">✕</button>
@@ -333,7 +335,7 @@
   <main class="content-page">
     <h1 class="section-title neon-text-blink">PORTOFOLIO MAHKOTA</h1>
     <p style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
-      Berikut adalah 9 hasil kerja terbaik kami. Kami bangga telah dipercaya oleh berbagai komunitas, instansi, dan perusahaan.
+      Kami bangga telah dipercaya oleh berbagai komunitas, instansi, dan perusahaan.
     </p>
 
     <!-- Grid Portofolio untuk 9 Gambar (Markup statis) -->

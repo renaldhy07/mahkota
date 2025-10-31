@@ -398,7 +398,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close on background click
     if (lightboxModal) {
         lightboxModal.addEventListener('click', (e) => {
-            if (e.target === lightboxModal || e.target.classList.contains('lightbox-close')) {
+            // Pastikan hanya menutup jika mengklik langsung modal background, bukan elemen di dalamnya
+            if (e.target === lightboxModal) {
                 closeLightbox();
             }
         });
